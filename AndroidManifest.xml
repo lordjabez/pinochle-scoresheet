@@ -31,6 +31,11 @@
             android:label="@string/title_activity_players"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name="com.singledsoftware.scoresheet.GameActivity"
+            android:label="@string/title_activity_game"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>

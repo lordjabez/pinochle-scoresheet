@@ -4,7 +4,12 @@
     <string name="app_name">Scoresheet</string>
     <string name="start_new_game">Start New Game</string>
     <string name="title_activity_players">Enter Player Names</string>
+    <string name="title_activity_game">Play Game</string>
     <string name="back">Back</string>
     <string name="next">Next</string>
-
+    <string name="player0_name">Malcolm</string>
+    <string name="player1_name">Zoe</string>
+    <string name="player2_name">Jayne</string>
+    <string name="player3_name">Kaylee</string>
+    
 </resources>

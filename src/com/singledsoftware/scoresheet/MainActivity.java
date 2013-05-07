@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
 
     public void startGame(View button) {
         Intent intent = new Intent(this, PlayersActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
     

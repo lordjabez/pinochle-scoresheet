@@ -52,11 +52,11 @@ public class PlayersActivity extends Activity {
         } catch (ParseException e) {
             // TODO: deal with failed save
         }
-        /*Intent intent = new Intent(this, GameActivity.class);
+        Intent intent = new Intent(this, GameActivity.class);
         String gameId = game.getObjectId();
         intent.putExtra("gameId", gameId);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);*/
+        startActivity(intent);
     }
     
 }
