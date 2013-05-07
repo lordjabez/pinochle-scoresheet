@@ -2,5 +2,9 @@
 <resources>
 
     <string name="app_name">Scoresheet</string>
+    <string name="start_new_game">Start New Game</string>
+    <string name="title_activity_players">Enter Player Names</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
 
 </resources>

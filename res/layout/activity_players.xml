@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlayersActivity" >
+
+    <EditText
+        android:id="@+id/player0name_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/edit_margin"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:nextFocusDown="@+id/player1name_edit" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/player1name_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/edit_margin"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:nextFocusDown="@+id/player2name_edit" />
+
+    <EditText
+        android:id="@+id/player2name_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/edit_margin"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:nextFocusDown="@+id/player3name_edit" />
+
+    <EditText
+        android:id="@+id/player3name_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/edit_margin"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+</RelativeLayout>
