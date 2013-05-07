@@ -1,16 +1,27 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical" >
 
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/start_new_game"
-        android:onClick="startGame" />
+        android:layout_marginBottom="@dimen/edit_margin"
+        android:layout_marginLeft="@dimen/game_button_margin"
+        android:layout_marginRight="@dimen/game_button_margin"
+        android:onClick="startGame"
+        android:text="@string/start_new_game" />
 
-</RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/game_button_margin"
+        android:layout_marginRight="@dimen/game_button_margin"
+        android:layout_marginTop="@dimen/edit_margin"
+        android:onClick="resumeGame"
+        android:text="@string/resume_game" />
+
+</LinearLayout>

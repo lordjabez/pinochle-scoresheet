@@ -1,10 +1,14 @@
 package com.singledsoftware.scoresheet;
 
+import java.util.UUID;
+
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
+import com.parse.ParseObject;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 import android.app.Activity;
 import android.content.Intent;
 
@@ -19,9 +23,18 @@ public class MainActivity extends Activity {
     }
 
     public void startGame(View button) {
+        String gameId = UUID.randomUUID().toString();
+        ParseObject game = new ParseObject("Game");
+        game.put("id", gameId);
+        game.saveEventually();
         Intent intent = new Intent(this, PlayersActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.putExtra("gameId", gameId);
         startActivity(intent);
+    }
+    
+    public void resumeGame(View button) {
+        Toast toast = Toast.makeText(getApplicationContext(), "Not yet implemented", Toast.LENGTH_SHORT);
+        toast.show();
     }
     
 }

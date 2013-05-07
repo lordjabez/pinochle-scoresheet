@@ -1,9 +1,13 @@
 package com.singledsoftware.scoresheet;
 
+import java.util.List;
+
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -14,11 +18,44 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 public class PlayersActivity extends Activity {
+    
+    private EditText[] playerName = new EditText[4];
+    
+    private ParseObject game = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_players);
+        playerName[0] = (EditText)this.findViewById(R.id.player0name_edit);
+        playerName[1] = (EditText)this.findViewById(R.id.player1name_edit);
+        playerName[2] = (EditText)this.findViewById(R.id.player2name_edit);
+        playerName[3] = (EditText)this.findViewById(R.id.player3name_edit);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String gameId = extras.getString("gameId");
+            if (gameId != null) {
+                ParseQuery query = new ParseQuery("Game");
+                query.whereEqualTo("id", gameId);
+                List<ParseObject> gameList;
+                try {
+                    gameList = query.find();
+                    if (gameList.size() > 0) {
+                        game = gameList.get(0);
+                    }
+                }
+                catch (ParseException e) {}
+                if (game != null) {
+                    JSONArray players = game.getJSONArray("players");
+                    for (int p = 0; p < 4; p++) {
+                        try {
+                            playerName[p].setText(players.getInt(p));
+                        }
+                        catch (JSONException e) {}
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -41,21 +78,14 @@ public class PlayersActivity extends Activity {
 
     public void startGame() {
         JSONArray players = new JSONArray();
-        players.put(((EditText)this.findViewById(R.id.player0name_edit)).getText().toString());
-        players.put(((EditText)this.findViewById(R.id.player1name_edit)).getText().toString());
-        players.put(((EditText)this.findViewById(R.id.player2name_edit)).getText().toString());
-        players.put(((EditText)this.findViewById(R.id.player3name_edit)).getText().toString());
-        ParseObject game = new ParseObject("Game");
-        game.put("players", players);
-        try {
-            game.save();
-        } catch (ParseException e) {
-            // TODO: deal with failed save
+        for (int p = 0; p < 4; p++) {
+            players.put(playerName[p].getText().toString());
         }
+        game.put("players", players);
+        game.saveEventually();
         Intent intent = new Intent(this, GameActivity.class);
-        String gameId = game.getObjectId();
+        String gameId = game.getString("id");
         intent.putExtra("gameId", gameId);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
     
