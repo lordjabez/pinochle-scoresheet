@@ -26,13 +26,8 @@ public class PlayersActivity extends Activity {
         if (extras != null) {
             game = (Game)extras.getSerializable("game");
         }
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle instanceState) {
-        super.onRestoreInstanceState(instanceState);
-        if (instanceState != null && game == null) {
-            game = (Game)instanceState.getSerializable("game");
+        if (savedInstanceState != null) {
+            game = (Game)savedInstanceState.getSerializable("game");
         }
         if (game == null) {
             game = new Game();

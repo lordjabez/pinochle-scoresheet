@@ -3,6 +3,8 @@ package com.singledsoftware.scoresheet;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class GameActivity extends Activity {
@@ -21,13 +23,8 @@ public class GameActivity extends Activity {
         if (extras != null) {
             game = (Game)extras.getSerializable("game");
         }
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle instanceState) {
-        super.onRestoreInstanceState(instanceState);
-        if (instanceState != null && game == null) {
-            game = (Game)instanceState.getSerializable("game");
+        if (savedInstanceState != null) {
+            game = (Game)savedInstanceState.getSerializable("game");
         }
         if (game == null) {
             game = new Game();
@@ -39,6 +36,13 @@ public class GameActivity extends Activity {
     protected void onSaveInstanceState(Bundle instanceState) {
         super.onSaveInstanceState(instanceState);
         instanceState.putSerializable("game", game);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_actionbar, menu);
+        return true;
     }
     
     public void takeAction(MenuItem item) {
