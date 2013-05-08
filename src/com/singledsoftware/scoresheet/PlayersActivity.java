@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -36,24 +37,14 @@ public class PlayersActivity extends Activity {
             String gameId = extras.getString("gameId");
             if (gameId != null) {
                 ParseQuery query = new ParseQuery("Game");
-                query.whereEqualTo("id", gameId);
-                List<ParseObject> gameList;
-                try {
-                    gameList = query.find();
-                    if (gameList.size() > 0) {
-                        game = gameList.get(0);
-                    }
-                }
-                catch (ParseException e) {}
-                if (game != null) {
-                    JSONArray players = game.getJSONArray("players");
-                    for (int p = 0; p < 4; p++) {
-                        try {
-                            playerName[p].setText(players.getInt(p));
+                query.getInBackground(gameId, new GetCallback() {
+                    public void done(ParseObject object, ParseException e) {
+                        if (e == null) {
+                            game = object;
+                            updatePlayers();
                         }
-                        catch (JSONException e) {}
                     }
-                }
+                });
             }
         }
     }
@@ -63,6 +54,22 @@ public class PlayersActivity extends Activity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_actionbar, menu);
         return true;
+    }
+    
+    private void updatePlayers() {
+        if (game != null) {
+            JSONArray players = game.getJSONArray("players");
+            if (players != null) {
+                try {
+                    for (int p = 0; p < 4; p++) {
+                        playerName[p].setText((String)players.get(p));
+                    }
+                }
+                catch (JSONException e) {
+                    // TODO: deal with no game data fetched
+                }
+            }
+        }
     }
     
     public void takeAction(MenuItem item) {

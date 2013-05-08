@@ -1,9 +1,8 @@
 package com.singledsoftware.scoresheet;
 
-import java.util.UUID;
-
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 
 import android.os.Bundle;
@@ -23,12 +22,17 @@ public class MainActivity extends Activity {
     }
 
     public void startGame(View button) {
-        String gameId = UUID.randomUUID().toString();
         ParseObject game = new ParseObject("Game");
-        game.put("id", gameId);
-        game.saveEventually();
+        try {
+            game.save();
+        }
+        catch (ParseException e) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Unable to make new game", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
         Intent intent = new Intent(this, PlayersActivity.class);
-        intent.putExtra("gameId", gameId);
+        intent.putExtra("gameId", game.getObjectId());
         startActivity(intent);
     }
     

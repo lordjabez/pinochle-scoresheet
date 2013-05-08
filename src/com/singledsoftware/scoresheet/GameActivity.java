@@ -1,5 +1,11 @@
 package com.singledsoftware.scoresheet;
 
+import java.util.List;
+
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -10,6 +16,8 @@ import android.view.MenuItem;
 public class GameActivity extends Activity {
     
     private StatusFragment statusFragment;
+    
+    private ParseObject game = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +29,18 @@ public class GameActivity extends Activity {
         if (extras != null) {
             String gameId = extras.getString("gameId");
             if (gameId != null) {
-                statusFragment.updateScore(gameId);
+                ParseQuery query = new ParseQuery("Game");
+                query.whereEqualTo("gameId", gameId);
+                List<ParseObject> gameList;
+                try {
+                    gameList = query.find();
+                    if (gameList.size() > 0) {
+                        game = gameList.get(0);
+                    }
+                }
+                catch (ParseException e) {}
+                statusFragment.setGame(game);
+                statusFragment.updateScore();
             }
         }
     }

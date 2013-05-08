@@ -3,10 +3,7 @@ package com.singledsoftware.scoresheet;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import com.parse.GetCallback;
-import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -18,6 +15,8 @@ import android.widget.TextView;
 public class StatusFragment extends Fragment {
     
     private TextView[] playerName = new TextView[4];
+    
+    private ParseObject game = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,27 +28,24 @@ public class StatusFragment extends Fragment {
         return resultView;
     }
     
-    public void updateScore(String gameId) {
-        ParseQuery query = new ParseQuery("Game");
-        query.getInBackground(gameId, new GetCallback() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                if (e == null) {
-                    JSONArray players = object.getJSONArray("players");
-                    try {
-                        for (int p = 0; p < 4; p++) {
-                            playerName[p].setText((String)players.get(p));
-                        }
-                    }
-                    catch (JSONException j) {
-                        // TODO: deal with no game data fetched
+    public void setGame(ParseObject game) {
+        this.game = game;
+    }
+    
+    public void updateScore() {
+        if (game != null) {
+            JSONArray players = game.getJSONArray("players");
+            if (players != null) {
+                try {
+                    for (int p = 0; p < 4; p++) {
+                        playerName[p].setText((String)players.get(p));
                     }
                 }
-                else {
+                catch (JSONException e) {
                     // TODO: deal with no game data fetched
                 }
             }
-        });      
+        }
     }
     
 }
