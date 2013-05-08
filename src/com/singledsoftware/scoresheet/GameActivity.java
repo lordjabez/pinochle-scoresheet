@@ -1,23 +1,15 @@
 package com.singledsoftware.scoresheet;
 
-import java.util.List;
-
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.FragmentManager;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class GameActivity extends Activity {
     
     private StatusFragment statusFragment;
     
-    private ParseObject game = null;
+    private Game game = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,29 +19,26 @@ public class GameActivity extends Activity {
         statusFragment = (StatusFragment)fragments.findFragmentById(R.id.status_fragment);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String gameId = extras.getString("gameId");
-            if (gameId != null) {
-                ParseQuery query = new ParseQuery("Game");
-                query.whereEqualTo("gameId", gameId);
-                List<ParseObject> gameList;
-                try {
-                    gameList = query.find();
-                    if (gameList.size() > 0) {
-                        game = gameList.get(0);
-                    }
-                }
-                catch (ParseException e) {}
-                statusFragment.setGame(game);
-                statusFragment.updateScore();
-            }
+            game = (Game)extras.getSerializable("game");
         }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_actionbar, menu);
-        return true;
+    protected void onRestoreInstanceState(Bundle instanceState) {
+        super.onRestoreInstanceState(instanceState);
+        if (instanceState != null && game == null) {
+            game = (Game)instanceState.getSerializable("game");
+        }
+        if (game == null) {
+            game = new Game();
+        }
+        statusFragment.update(game);
+    }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle instanceState) {
+        super.onSaveInstanceState(instanceState);
+        instanceState.putSerializable("game", game);
     }
     
     public void takeAction(MenuItem item) {

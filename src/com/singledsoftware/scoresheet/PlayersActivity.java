@@ -1,15 +1,5 @@
 package com.singledsoftware.scoresheet;
 
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import com.parse.GetCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -22,7 +12,7 @@ public class PlayersActivity extends Activity {
     
     private EditText[] playerName = new EditText[4];
     
-    private ParseObject game = null;
+    private Game game = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +24,28 @@ public class PlayersActivity extends Activity {
         playerName[3] = (EditText)this.findViewById(R.id.player3name_edit);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String gameId = extras.getString("gameId");
-            if (gameId != null) {
-                ParseQuery query = new ParseQuery("Game");
-                query.getInBackground(gameId, new GetCallback() {
-                    public void done(ParseObject object, ParseException e) {
-                        if (e == null) {
-                            game = object;
-                            updatePlayers();
-                        }
-                    }
-                });
-            }
+            game = (Game)extras.getSerializable("game");
         }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle instanceState) {
+        super.onRestoreInstanceState(instanceState);
+        if (instanceState != null && game == null) {
+            game = (Game)instanceState.getSerializable("game");
+        }
+        if (game == null) {
+            game = new Game();
+        }
+        for (int p = 0; p < 4; p++) {
+            playerName[p].setText(game.getPlayer(p));
+        }
+    }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle instanceState) {
+        super.onSaveInstanceState(instanceState);
+        instanceState.putSerializable("game", game);
     }
 
     @Override
@@ -54,22 +53,6 @@ public class PlayersActivity extends Activity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_actionbar, menu);
         return true;
-    }
-    
-    private void updatePlayers() {
-        if (game != null) {
-            JSONArray players = game.getJSONArray("players");
-            if (players != null) {
-                try {
-                    for (int p = 0; p < 4; p++) {
-                        playerName[p].setText((String)players.get(p));
-                    }
-                }
-                catch (JSONException e) {
-                    // TODO: deal with no game data fetched
-                }
-            }
-        }
     }
     
     public void takeAction(MenuItem item) {
@@ -84,15 +67,11 @@ public class PlayersActivity extends Activity {
     }
 
     public void startGame() {
-        JSONArray players = new JSONArray();
         for (int p = 0; p < 4; p++) {
-            players.put(playerName[p].getText().toString());
+            game.setPlayer(p, playerName[p].getText().toString());
         }
-        game.put("players", players);
-        game.saveEventually();
         Intent intent = new Intent(this, GameActivity.class);
-        String gameId = game.getString("id");
-        intent.putExtra("gameId", gameId);
+        intent.putExtra("game", game);
         startActivity(intent);
     }
     
