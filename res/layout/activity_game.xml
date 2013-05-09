@@ -8,15 +8,23 @@
         android:name="com.singledsoftware.scoresheet.BidFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="5"
         tools:layout="@layout/fragment_bid" />
+    
+    <fragment
+        android:id="@+id/meld_fragment"
+        android:name="com.singledsoftware.scoresheet.MeldFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        tools:layout="@layout/fragment_meld" />
 
     <fragment
         android:id="@+id/status_fragment"
         android:name="com.singledsoftware.scoresheet.StatusFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="3"
         tools:layout="@layout/fragment_status" />
 
 </LinearLayout>

@@ -6,12 +6,19 @@
     <string name="resume_game">Resume Game</string>
     <string name="title_activity_players">Enter Player Names</string>
     <string name="title_activity_game">Play Game</string>
-    <string name="back">Back</string>
-    <string name="next">Next</string>
+    <string name="main">Main</string>
+    <string name="ok">OK</string>
+    <string name="undo">Undo</string>
     <string name="bid">Bid</string>
     <string name="player0_name">Malcolm</string>
     <string name="player1_name">Zoe</string>
     <string name="player2_name">Jayne</string>
     <string name="player3_name">Kaylee</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
+    <string name="spades">Spades</string>
+    <string name="diamonds">Diamonds</string>
+    <string name="clubs">Clubs</string>
+    <string name="hearts">Hearts</string>
     
 </resources>

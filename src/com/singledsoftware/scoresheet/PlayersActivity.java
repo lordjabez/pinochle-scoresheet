@@ -46,16 +46,16 @@ public class PlayersActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_actionbar, menu);
+        inflater.inflate(R.menu.players_actionbar, menu);
         return true;
     }
     
     public void takeAction(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.back_action:
+            case R.id.main_action:
                 this.finish();
                 break;
-            case R.id.next_action:
+            case R.id.ok_action:
                 startGame();
                 break;
         }

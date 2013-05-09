@@ -3,35 +3,47 @@ package com.singledsoftware.scoresheet;
 import java.io.Serializable;
 
 public class Game implements Serializable {
-    
-    private static final long serialVersionUID = -8932615431224281147L;
+
+    private static final long serialVersionUID = -5278104013850773427L;
 
     private class Hand {
         
-        private char trump;
         private int bid;
+        private int bidder;
+        private int trump;
+        
         private int[] meld = null;
         private int[] points = null;
         
-        public Hand(char u, char b) {
-            trump = u;
+        public Hand(int b, int d, int u) {
             bid = b;
+            bidder = d;
+            trump = u;
         }
         
-        public String getBid() {
-            return bid + "" + trump;
+        public int getBidder() {
+            return bidder;
         }
         
-        public String getScoreStr(int t) {
-            int score = getScore(t);
-            return score >= 0 ? score + "" : "";
+        public boolean bidderOnTeam(int t) {
+            return (t == 0 && (bidder % 2 == 0)) || (t == 1 && (bidder % 2 == 1));
+        }
+        
+        public String getBidStr() {
+            switch(trump) {
+                case 0: return bid + " S ";
+                case 1: return bid + " D ";
+                case 2: return bid + " C ";
+                case 3: return bid + " H ";
+                default: return "";
+            }
         }
         
         public int getScore(int t) {
             if (meld != null) {
                 if (points != null) {
                     int score = meld[t] + points[t];
-                    if (score >= bid) {
+                    if (score >= bid || !bidderOnTeam(t)) {
                         return score;
                     }
                     else {
@@ -43,7 +55,7 @@ public class Game implements Serializable {
                 }
             }
             else {
-                return -1;
+                return 0;
             }
         }
         
@@ -51,6 +63,10 @@ public class Game implements Serializable {
     
     private String[] players = {"Malcolm", "Zoe", "Jayne", "Kaylee"};
     private Hand[] hands = {null, null, null, null};
+    
+    private enum Phases {BID, MELD, POINTS, FINISHED};  // TODO: is this serializable?
+    private Phases phase = Phases.BID;
+    private int hand = 0;
     
     public Game() {}
     
@@ -63,7 +79,7 @@ public class Game implements Serializable {
     }
     
     public String getScore(int h, int t) {
-        return hands[h] != null ? hands[h].getScoreStr(t) : "";
+        return hands[h] != null ? hands[h].getScore(t) + "" : "";
     }
     
     public String getTotal(int t) {
@@ -75,7 +91,48 @@ public class Game implements Serializable {
     }
     
     public String getBid(int h) {
-        return hands[h] != null ? hands[h].getBid() : "";
+        return hands[h] != null ? hands[h].getBidStr() + players[hands[h].getBidder()] : "";
+    }
+    
+    public void setBid(int bid, int bidder, int trump) {
+        hands[hand] = new Hand(bid, bidder, trump);
+        phase = Phases.MELD;
+    }
+    
+    public void setMeld(int meld0, int meld1) {
+        hands[hand].meld = new int[]{meld0, meld1};
+        phase = Phases.POINTS;
+    }
+    
+    public void setPoints(int points0, int points1) {
+        hands[hand].points = new int[]{points0, points1};
+        if (hand < 3) {
+            hand++;
+            phase = Phases.BID;
+        }
+        else {
+            phase = Phases.FINISHED;
+        }
+    }
+    
+    public boolean bidderOnTeam(int t) {
+        return hands[hand] != null ? hands[hand].bidderOnTeam(t) : false;
+    }
+    
+    public boolean isBidPhase() {
+        return phase == Phases.BID;
+    }
+    
+    public boolean isMeldPhase() {
+        return phase == Phases.MELD;
+    }
+    
+    public boolean isPointsPhase() {
+        return phase == Phases.POINTS; 
+    }
+    
+    public boolean isGameFinished() {
+        return phase == Phases.FINISHED;
     }
     
 }

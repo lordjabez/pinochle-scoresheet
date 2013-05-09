@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/back_action"
+        android:id="@+id/main_action"
         android:onClick="takeAction"
         android:showAsAction="ifRoom"
-        android:title="@string/back">
+        android:title="@string/main">
     </item>
     <item
-        android:id="@+id/next_action"
+        android:id="@+id/ok_action"
         android:onClick="takeAction"
         android:showAsAction="ifRoom"
-        android:title="@string/next">
+        android:title="@string/ok">
     </item>
 
 </menu>
