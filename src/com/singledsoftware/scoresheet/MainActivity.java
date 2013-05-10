@@ -2,7 +2,6 @@ package com.singledsoftware.scoresheet;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 import android.app.Activity;
 import android.content.Intent;
 
@@ -21,11 +20,6 @@ public class MainActivity extends Activity {
         intent.putExtra("game", game);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-    }
-    
-    public void resumeGame(View button) {
-        Toast toast = Toast.makeText(getApplicationContext(), "Not yet implemented", Toast.LENGTH_SHORT);
-        toast.show();
     }
     
     @Override

@@ -15,13 +15,4 @@
         android:onClick="startGame"
         android:text="@string/start_new_game" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/game_button_margin"
-        android:layout_marginRight="@dimen/game_button_margin"
-        android:layout_marginTop="@dimen/edit_margin"
-        android:onClick="resumeGame"
-        android:text="@string/resume_game" />
-
 </LinearLayout>
