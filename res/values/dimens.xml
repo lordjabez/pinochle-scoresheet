@@ -2,4 +2,6 @@
 <resources>
     <dimen name="edit_margin">16dp</dimen>
     <dimen name="game_button_margin">128dp</dimen>
+    <dimen name="status_margin">4dp</dimen>
+    <dimen name="game_margin">4dp</dimen>
 </resources>

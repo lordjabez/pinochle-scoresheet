@@ -15,6 +15,7 @@
     <string name="main">Main</string>
     <string name="ok">OK</string>
     <string name="undo">Undo</string>
+    <string name="new_game">New Game</string>
     <string name="bid">Bid</string>
     <string name="up">Up</string>
     <string name="down">Down</string>

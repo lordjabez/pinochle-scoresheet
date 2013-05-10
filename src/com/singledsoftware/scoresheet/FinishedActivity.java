@@ -64,7 +64,7 @@ public class FinishedActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.game_actionbar, menu); // TODO: change to custom actionbar
+        inflater.inflate(R.menu.finished_actionbar, menu);
         return true;
     }
 
@@ -79,11 +79,8 @@ public class FinishedActivity extends Activity {
             case R.id.undo_action:
                 this.finish();
                 break;
-            case R.id.ok_action:
-                // TODO: add ability to restart game with same players
-                // (put reset scores call in Game by nulling out everything and going to bid)s
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("game", game);
+            case R.id.new_action:
+                Intent intent = new Intent(this, PlayersActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 break;

@@ -52,15 +52,18 @@ public class PlayersActivity extends Activity {
     }
 
     public void takeAction(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.main_action:
-                this.finish();
+                intent = new Intent(this, PlayersActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
                 break;
             case R.id.ok_action:
                 for (int p = 0; p < 4; p++) {
                     game.setPlayer(p, playerName[p].getText().toString());
                 }
-                Intent intent = new Intent(this, BidActivity.class);
+                intent = new Intent(this, BidActivity.class);
                 intent.putExtra("game", game);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);

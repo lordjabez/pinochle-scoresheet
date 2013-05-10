@@ -72,6 +72,10 @@ public class Game implements Serializable {
     
     public Game() {}
     
+    public boolean isDealer(int p) {
+        return p == hand;
+    }
+    
     public String getPlayer(int p) {
         return players[p];
     }
@@ -97,7 +101,7 @@ public class Game implements Serializable {
     }
     
     public String getBid(int h) {
-        return hands[h] != null ? hands[h].getBidStr() + players[hands[h].getBidder()] : "";
+        return hands[h] != null ? hands[h].getBidStr() + players[hands[h].getBidder()].substring(0, 3) : "";
     }
     
     public void setBid(int bid, int bidder, int trump) {

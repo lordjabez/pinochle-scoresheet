@@ -1,6 +1,8 @@
 package com.singledsoftware.scoresheet;
 
 import android.app.Fragment;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,15 +43,36 @@ public class StatusFragment extends Fragment {
     public void update(Game game) {
         for (int p = 0; p < 4; p++) {
             playerText[p].setText(game.getPlayer(p));
+            if (game.isDealer(p)) {
+                playerText[p].setTypeface(null, Typeface.BOLD_ITALIC);
+            }
+            else {
+                playerText[p].setTypeface(null, Typeface.BOLD);
+            }
         }
         for (int h = 0; h < 4; h++) {
             for (int t = 0; t < 2; t++) {
-                scoreText[h][t].setText(game.getScore(h, t));
+                String score = game.getScore(h, t);
+                scoreText[h][t].setText(score);
+                if (score.length() > 0 && score.charAt(0) == '-') {
+                    scoreText[h][t].setTextColor(Color.RED);
+                }
+                else {
+                    scoreText[h][t].setTextColor(Color.BLACK);
+                }
+                
             }
             bidText[h].setText(game.getBid(h));
         }
         for (int t = 0; t < 2; t++) {
-            totalText[t].setText(game.getTotalStr(t));
+            String total = game.getTotalStr(t);
+            totalText[t].setText(total);
+            if (total.length() > 0 && total.charAt(0) == '-') {
+                totalText[t].setTextColor(Color.RED);
+            }
+            else {
+                totalText[t].setTextColor(Color.BLACK);
+            }
         }
     }
     
