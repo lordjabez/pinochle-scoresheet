@@ -4,7 +4,6 @@
     android:layout_height="match_parent" >
 
     <LinearLayout
-        android:id="@+id/game_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/game_margin"
@@ -22,7 +21,8 @@
                 android:id="@+id/team0_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/game_margin" />
+                android:layout_margin="@dimen/game_margin"
+                android:gravity="center" />
 
             <Button
                 android:id="@+id/meld0_up_button"
@@ -60,7 +60,8 @@
                 android:id="@+id/team1_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/game_margin" />
+                android:layout_margin="@dimen/game_margin"
+                android:gravity="center" />
 
             <Button
                 android:id="@+id/meld1_up_button"
