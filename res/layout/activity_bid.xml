@@ -12,96 +12,114 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/game_margin"
             android:layout_weight="1"
             android:orientation="vertical" >
 
             <Button
                 android:id="@+id/bid_up_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:onClick="onClick"
-                android:text="@string/up" />
+                android:text="@string/up"
+                tools:ignore="NestedWeights" />
 
             <TextView
                 android:id="@+id/bid_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="@dimen/spinner_font_size" />
 
             <Button
                 android:id="@+id/bid_down_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:onClick="onClick"
                 android:text="@string/down" />
+
         </LinearLayout>
 
         <RadioGroup
             android:id="@+id/trump_radiogroup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/game_margin"
             android:layout_weight="1" >
 
             <RadioButton
                 android:id="@+id/spades_trump"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:checked="true"
                 android:text="@string/spades" />
 
             <RadioButton
                 android:id="@+id/diamonds_trump"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="@string/diamonds" />
 
             <RadioButton
                 android:id="@+id/clubs_trump"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="@string/clubs" />
 
             <RadioButton
                 android:id="@+id/hearts_trump"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="@string/hearts" />
+
         </RadioGroup>
 
         <RadioGroup
             android:id="@+id/bidder_radiogroup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/game_margin"
             android:layout_weight="1" >
 
             <RadioButton
                 android:id="@+id/player0_bidder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:checked="true" />
 
             <RadioButton
                 android:id="@+id/player1_bidder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <RadioButton
                 android:id="@+id/player2_bidder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <RadioButton
                 android:id="@+id/player3_bidder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
         </RadioGroup>
     </LinearLayout>
 
     <fragment
         android:id="@id/status_fragment"
         android:name="com.singledsoftware.scoresheet.StatusFragment"
-        android:layout_width="200dp"
+        android:layout_width="@dimen/status_width"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="false"
