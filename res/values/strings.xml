@@ -4,6 +4,7 @@
     <string name="app_name">Scoresheet</string>
 
     <string name="start_new_game">Start New Game</string>
+    <string name="resume_game">Resume Game</string>
 
     <string name="title_activity_players">Enter Player Names</string>
     <string name="title_activity_bid">Enter Bid</string>
