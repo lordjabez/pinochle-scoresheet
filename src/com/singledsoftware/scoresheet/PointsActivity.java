@@ -133,8 +133,7 @@ public class PointsActivity extends Activity {
                 int points0 = Integer.parseInt(points0Text.getText().toString());
                 int points1 = Integer.parseInt(points1Text.getText().toString());
                 game.setPoints(points0, points1);
-                // TODO: Intent intent = game.isGameFinished() ? new Intent(this, FinishedActivity.class) : new Intent(this, BidActivity.class);
-                Intent intent = new Intent(this, BidActivity.class);
+                Intent intent = game.isGameFinished() ? new Intent(this, FinishedActivity.class) : new Intent(this, BidActivity.class);
                 intent.putExtra("game", game);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);

@@ -2,23 +2,28 @@
 <resources>
 
     <string name="app_name">Scoresheet</string>
+
     <string name="start_new_game">Start New Game</string>
     <string name="resume_game">Resume Game</string>
+
     <string name="title_activity_players">Enter Player Names</string>
     <string name="title_activity_bid">Enter Bid</string>
     <string name="title_activity_meld">Enter Meld</string>
     <string name="title_activity_points">Enter Points</string>
     <string name="title_activity_finished">Game Finished</string>
+
     <string name="main">Main</string>
     <string name="ok">OK</string>
     <string name="undo">Undo</string>
     <string name="bid">Bid</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
+
     <string name="player0_name">Malcolm</string>
     <string name="player1_name">Zoe</string>
     <string name="player2_name">Jayne</string>
     <string name="player3_name">Kaylee</string>
-    <string name="up">Up</string>
-    <string name="down">Down</string>
+
     <string name="spades">Spades</string>
     <string name="diamonds">Diamonds</string>
     <string name="clubs">Clubs</string>

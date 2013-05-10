@@ -84,12 +84,16 @@ public class Game implements Serializable {
         return hands[h] != null ? hands[h].getScore(t) + "" : "";
     }
     
-    public String getTotal(int t) {
+    public int getTotal(int t) {
         int total = 0;
         for (int h = 0; h < 4; h++) {
             total += hands[h] != null ? hands[h].getScore(t) : 0;
         }
-        return total + "";
+        return total;
+    }
+    
+    public String getTotalStr(int t) {
+        return getTotal(t) + "";
     }
     
     public String getBid(int h) {
@@ -135,6 +139,14 @@ public class Game implements Serializable {
     
     public boolean isGameFinished() {
         return phase == Phases.FINISHED;
+    }
+    
+    public int getWinningTeam() {
+        int total0 = getTotal(0);
+        int total1 = getTotal(1);
+        if (total0 > total1) return 0;
+        if (total1 > total0) return 1;
+        return -1;
     }
     
 }

@@ -49,7 +49,7 @@ public class StatusFragment extends Fragment {
             bidText[h].setText(game.getBid(h));
         }
         for (int t = 0; t < 2; t++) {
-            totalText[t].setText(game.getTotal(t));
+            totalText[t].setText(game.getTotalStr(t));
         }
     }
     

@@ -4,9 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk
-        android:minSdkVersion="11"
-        android:targetSdkVersion="17" />
+    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="17" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +17,6 @@
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -41,6 +38,11 @@
         <activity
             android:name="com.singledsoftware.scoresheet.PointsActivity"
             android:label="@string/title_activity_points"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.singledsoftware.scoresheet.FinishedActivity"
+            android:label="@string/title_activity_finished"
             android:screenOrientation="landscape" >
         </activity>
     </application>
