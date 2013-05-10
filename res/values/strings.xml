@@ -7,6 +7,8 @@
     <string name="title_activity_players">Enter Player Names</string>
     <string name="title_activity_bid">Enter Bid</string>
     <string name="title_activity_meld">Enter Meld</string>
+    <string name="title_activity_points">Enter Points</string>
+    <string name="title_activity_finished">Game Finished</string>
     <string name="main">Main</string>
     <string name="ok">OK</string>
     <string name="undo">Undo</string>

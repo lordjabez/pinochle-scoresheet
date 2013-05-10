@@ -3,6 +3,7 @@ package com.singledsoftware.scoresheet;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,6 +32,7 @@ public class MeldActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setWindowAnimations(0);
         setContentView(R.layout.activity_meld);
         team0Text = (TextView)this.findViewById(R.id.team0_text);
         meld0DownButton = (Button)this.findViewById(R.id.meld0_down_button);
@@ -112,10 +114,10 @@ public class MeldActivity extends Activity {
                 int meld0 = Integer.parseInt(meld0Text.getText().toString());
                 int meld1 = Integer.parseInt(meld1Text.getText().toString());
                 game.setMeld(meld0, meld1);
-                /*Intent intent = new Intent(this, PointsActivity.class);
+                Intent intent = new Intent(this, PointsActivity.class);
                 intent.putExtra("game", game);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);*/
+                startActivity(intent);
                 break;
         }
     }

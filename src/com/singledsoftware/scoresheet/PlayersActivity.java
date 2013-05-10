@@ -17,6 +17,7 @@ public class PlayersActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setWindowAnimations(0);
         setContentView(R.layout.activity_players);
         playerName[0] = (EditText)this.findViewById(R.id.player0name_edit);
         playerName[1] = (EditText)this.findViewById(R.id.player1name_edit);

@@ -16,7 +16,7 @@ import android.widget.TextView;
 public class BidActivity extends Activity {
 
     private static final int MINIMUM_BID = 15;
-    private static final int DEFAULT_BID = 33;
+    private static final int DEFAULT_BID = 32;
     
     private Button bidDownButton;
     private TextView bidText;
@@ -30,6 +30,7 @@ public class BidActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setWindowAnimations(0);
         setContentView(R.layout.activity_bid);
         bidDownButton = (Button)this.findViewById(R.id.bid_down_button);
         bidText = (TextView)this.findViewById(R.id.bid_text);

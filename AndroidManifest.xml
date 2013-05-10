@@ -38,6 +38,11 @@
             android:label="@string/title_activity_meld"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name="com.singledsoftware.scoresheet.PointsActivity"
+            android:label="@string/title_activity_points"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>
