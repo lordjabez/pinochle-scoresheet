@@ -9,32 +9,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center"
+        android:layout_margin="@dimen/game_margin"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/defeated_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_margin="@dimen/game_margin" />
 
     <TextView
         android:id="@+id/losingTeam_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center"
+        android:layout_margin="@dimen/game_margin"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/score_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_margin="@dimen/game_margin" />
 
     <TextView
         android:id="@+id/finalscore_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center"
+        android:layout_margin="@dimen/game_margin"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
 </LinearLayout>
