@@ -114,7 +114,7 @@ public class MeldActivity extends Activity {
                 int meld0 = Integer.parseInt(meld0Text.getText().toString());
                 int meld1 = Integer.parseInt(meld1Text.getText().toString());
                 game.setMeld(meld0, meld1);
-                Intent intent = new Intent(this, PointsActivity.class);
+                Intent intent = game.isPointsPhase() ? new Intent(this, PointsActivity.class) : new Intent(this, BidActivity.class);
                 intent.putExtra("game", game);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);

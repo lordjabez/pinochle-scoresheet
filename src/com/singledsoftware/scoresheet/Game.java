@@ -111,7 +111,14 @@ public class Game implements Serializable {
     
     public void setMeld(int meld0, int meld1) {
         hands[hand].meld = new int[]{meld0, meld1};
-        phase = Phases.POINTS;
+        if ((bidderOnTeam(0) && hands[hand].bid - meld0 > 25) ||
+            (bidderOnTeam(1) && hands[hand].bid - meld1 > 25)) {
+            hands[hand].points = new int[]{0, 0};
+            phase = Phases.BID;
+        }
+        else {
+            phase = Phases.POINTS;
+        }
     }
     
     public void setPoints(int points0, int points1) {
