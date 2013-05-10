@@ -28,4 +28,10 @@ public class MainActivity extends Activity {
         toast.show();
     }
     
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
+    }
+    
 }

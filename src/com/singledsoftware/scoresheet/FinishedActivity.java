@@ -90,4 +90,10 @@ public class FinishedActivity extends Activity {
         }
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
+    }
+    
 }

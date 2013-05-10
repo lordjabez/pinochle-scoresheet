@@ -108,4 +108,10 @@ public class BidActivity extends Activity {
         }
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, 0);
+    }
+    
 }
