@@ -4,7 +4,6 @@
     android:layout_height="match_parent" >
 
     <LinearLayout
-        android:id="@+id/game_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/game_margin"
@@ -51,7 +50,6 @@
             android:layout_weight="1" >
 
             <RadioButton
-                android:id="@+id/spades_trump"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -59,21 +57,18 @@
                 android:text="@string/spades" />
 
             <RadioButton
-                android:id="@+id/diamonds_trump"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/diamonds" />
 
             <RadioButton
-                android:id="@+id/clubs_trump"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/clubs" />
 
             <RadioButton
-                android:id="@+id/hearts_trump"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -89,26 +84,22 @@
             android:layout_weight="1" >
 
             <RadioButton
-                android:id="@+id/player0_bidder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:checked="true" />
 
             <RadioButton
-                android:id="@+id/player1_bidder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <RadioButton
-                android:id="@+id/player2_bidder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <RadioButton
-                android:id="@+id/player3_bidder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
