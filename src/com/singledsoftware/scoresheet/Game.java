@@ -63,7 +63,8 @@ public class Game implements Serializable {
         
     }
     
-    private String[] players = {"Malcolm", "Zoe", "Jayne", "Kaylee"};
+    //private String[] players = {"Malcolm", "Zoe", "Jayne", "Kaylee"};
+    private String[] players = {"", "", "", ""};
     private Hand[] hands = {null, null, null, null};
     
     private enum Phases {BID, MELD, POINTS, FINISHED};
