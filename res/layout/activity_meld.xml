@@ -1,8 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:baselineAligned="true" >
+    android:layout_height="match_parent" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +18,8 @@
             android:id="@+id/meld0_up_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/up" />
+            android:text="@string/up"
+            android:onClick="onClick" />
 
         <TextView
             android:id="@+id/meld0_text"
@@ -31,7 +31,8 @@
             android:id="@+id/meld0_down_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/down" />
+            android:text="@string/down"
+            android:onClick="onClick" />
 
     </LinearLayout>
 
@@ -50,7 +51,8 @@
             android:id="@+id/meld1_up_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/up" />
+            android:text="@string/up"
+            android:onClick="onClick" />
 
         <TextView
             android:id="@+id/meld1_text"
@@ -62,8 +64,17 @@
             android:id="@+id/meld1_down_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/down" />
+            android:text="@string/down"
+            android:onClick="onClick" />
 
     </LinearLayout>
 
+    <fragment
+        android:id="@+id/status_fragment"
+        android:name="com.singledsoftware.scoresheet.StatusFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_status" />
+    
 </LinearLayout>

@@ -5,7 +5,8 @@
     <string name="start_new_game">Start New Game</string>
     <string name="resume_game">Resume Game</string>
     <string name="title_activity_players">Enter Player Names</string>
-    <string name="title_activity_game">Play Game</string>
+    <string name="title_activity_bid">Enter Bid</string>
+    <string name="title_activity_meld">Enter Meld</string>
     <string name="main">Main</string>
     <string name="ok">OK</string>
     <string name="undo">Undo</string>

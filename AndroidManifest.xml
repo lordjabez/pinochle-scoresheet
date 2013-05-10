@@ -29,8 +29,13 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.singledsoftware.scoresheet.GameActivity"
-            android:label="@string/title_activity_game"
+            android:name="com.singledsoftware.scoresheet.BidActivity"
+            android:label="@string/title_activity_bid"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.singledsoftware.scoresheet.MeldActivity"
+            android:label="@string/title_activity_meld"
             android:screenOrientation="landscape" >
         </activity>
     </application>

@@ -36,7 +36,7 @@ public class PlayersActivity extends Activity {
             playerName[p].setText(game.getPlayer(p));
         }
     }
-    
+
     @Override
     protected void onSaveInstanceState(Bundle instanceState) {
         super.onSaveInstanceState(instanceState);
@@ -49,25 +49,22 @@ public class PlayersActivity extends Activity {
         inflater.inflate(R.menu.players_actionbar, menu);
         return true;
     }
-    
+
     public void takeAction(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.main_action:
                 this.finish();
                 break;
             case R.id.ok_action:
-                startGame();
+                for (int p = 0; p < 4; p++) {
+                    game.setPlayer(p, playerName[p].getText().toString());
+                }
+                Intent intent = new Intent(this, BidActivity.class);
+                intent.putExtra("game", game);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
                 break;
         }
-    }
-
-    public void startGame() {
-        for (int p = 0; p < 4; p++) {
-            game.setPlayer(p, playerName[p].getText().toString());
-        }
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("game", game);
-        startActivity(intent);
     }
     
 }

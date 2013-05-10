@@ -6,7 +6,9 @@ public class Game implements Serializable {
 
     private static final long serialVersionUID = -5278104013850773427L;
 
-    private class Hand {
+    private class Hand implements Serializable {
+        
+        private static final long serialVersionUID = -5719893226770609068L;
         
         private int bid;
         private int bidder;
@@ -64,7 +66,7 @@ public class Game implements Serializable {
     private String[] players = {"Malcolm", "Zoe", "Jayne", "Kaylee"};
     private Hand[] hands = {null, null, null, null};
     
-    private enum Phases {BID, MELD, POINTS, FINISHED};  // TODO: is this serializable?
+    private enum Phases {BID, MELD, POINTS, FINISHED};
     private Phases phase = Phases.BID;
     private int hand = 0;
     

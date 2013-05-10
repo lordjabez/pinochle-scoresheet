@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
         Game game = new Game();
         Intent intent = new Intent(this, PlayersActivity.class);
         intent.putExtra("game", game);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
     
