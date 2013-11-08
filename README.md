@@ -1,4 +1,4 @@
-pinochle-scoresheet
+Pinochle Scoresheet
 ===================
 
-A simple Android application for keeping Pinochle scores
+A simple Android application for keeping track of Pinochle scores. This application follows the Neer house rules.
