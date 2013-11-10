@@ -33,10 +33,10 @@ public class Game implements Serializable {
         
         public String getBidStr() {
             switch(trump) {
-                case 0: return bid + " S ";
-                case 1: return bid + " D ";
-                case 2: return bid + " C ";
-                case 3: return bid + " H ";
+                case 0: return bid + " S";
+                case 1: return bid + " D";
+                case 2: return bid + " C";
+                case 3: return bid + " H";
                 default: return "";
             }
         }
@@ -102,9 +102,18 @@ public class Game implements Serializable {
     }
     
     public String getBid(int h) {
-        return hands[h] != null ? hands[h].getBidStr() + players[hands[h].getBidder()].substring(0, 3) : "";
+        if (hands[h] != null) {
+            String bidder = players[hands[h].getBidder()];
+            if (bidder.length() > 3) {
+                bidder = bidder.substring(0, 3);
+            }
+            return hands[h].getBidStr() + " " + bidder;
+        }
+        else {
+            return "";
+        }
     }
-    
+
     public void setBid(int bid, int bidder, int trump) {
         hands[hand] = new Hand(bid, bidder, trump);
         phase = Phases.MELD;
