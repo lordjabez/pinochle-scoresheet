@@ -25,7 +25,7 @@ public class ScoresheetIntent extends Intent {
         super(packageContext, cls);
         // Prevent transition animation when starting the new activity.
         this.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        // Store the game object.
+        // Store the game object for the new activity.
         this.putExtra("game", game);
     }
     
