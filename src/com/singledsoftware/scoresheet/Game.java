@@ -10,109 +10,10 @@ import java.io.Serializable;
  * @author Judson D Neer
  * @see java.io.Serializable
  */
-public class Game implements Serializable {
+class Game implements Serializable {
 
     // Required for object to be serializable.
     private static final long serialVersionUID = -5278104013850773427L;
-
-    /**
-     * Stores data for a particular hand of a game.
-     *
-     * @author Judson D Neer
-     * @see java.io.Serializable
-     */
-    private class Hand implements Serializable {
-
-        // Required for object to be serializable.
-        private static final long serialVersionUID = -5719893226770609068L;
-
-        // Bid value
-        private final int bid;
-
-        // Index of bid winner (0-4)
-        private final int bidder;
-
-        // Index of trump suit (0 = spades, 1 = diamonds, 2 = clubs, 3 = hearts)
-        private final int trump;
-
-        // Stores meld and point values for both teams, where
-        // team 0 is players 0 & 2 and team 1 is players 1 & 3.
-        private int[] meld = null;
-        private int[] points = null;
-
-        /**
-         * Constructor.
-         *
-         * @param b New bid value
-         * @param d New bidder index
-         * @param u New trump index
-         */
-        public Hand(int b, int d, int u) {
-            bid = b;
-            bidder = d;
-            trump = u;
-        }
-
-        /**
-         * @return Player index for the bidder (0-4 for players around the table, starting to the left of scorekeeper)
-         */
-        public int getBidder() {
-            return bidder;
-        }
-
-        /**
-         * @param t Team index (0 = players 0 & 2, 1 = players 1 & 3)
-         * @return True if the bidder is on the given team
-         */
-        public boolean bidderOnTeam(int t) {
-            return (t == 0 && (bidder % 2 == 0)) || (t == 1 && (bidder % 2 == 1));
-        }
-
-        /**
-         * @return A string representation of the hand's bid value and trump suit
-         */
-        public String getBidStr() {
-            switch(trump) {
-                case 0: return bid + " S";
-                case 1: return bid + " D";
-                case 2: return bid + " C";
-                case 3: return bid + " H";
-                default: return "";
-            }
-        }
-
-        /**
-         * @param t Team index (0 = players 0 & 2, 1 = players 1 & 3)
-         * @return A team's total score for this hand based on meld, points, and bid.
-         */
-        public int getScore(int t) {
-            // Check to see if we have meld values.
-            if (meld != null) {
-                // Check to see if we have point values.
-                if (points != null) {
-                    // Sum the meld and points, and if it's equal to or larger than
-                    // the bid, or if this is the non-bidding team, return that sum.
-                    int score = meld[t] + points[t];
-                    if (score >= bid || !bidderOnTeam(t)) {
-                        return score;
-                    }
-                    // Otherwise the team got set, so they go down by the bid value.
-                    else {
-                        return -bid;
-                    }
-                }
-                // If we haven't gotten any points yet, a team's score is their meld value.
-                else {
-                    return meld[t];
-                }
-            }
-            // If we haven't melded yet the team's score is zero.
-            else {
-                return 0;
-            }
-        }
-
-    }
 
     // A game contains four players, whose names are stored here.
     private final String[] players = {"", "", "", ""};
@@ -224,11 +125,11 @@ public class Game implements Serializable {
      * @param meld1 Meld value for team 1
      */
     public void setMeld(int meld0, int meld1) {
-        hands[hand].meld = new int[]{meld0, meld1};
+        hands[hand].setMeld(meld0, meld1);
         // We check to see if the hand can be won given the meld values. To be
         // possible the bidding team must be within 25 points of their bid value.
-        boolean team0Set = bidderOnTeam(0) && hands[hand].bid - meld0 > 25;
-        boolean team1Set = bidderOnTeam(1) && hands[hand].bid - meld1 > 25;
+        boolean team0Set = bidderOnTeam(0) && hands[hand].getBid() - meld0 > 25;
+        boolean team1Set = bidderOnTeam(1) && hands[hand].getBid() - meld1 > 25;
         // If they can't make it, both teams score zero points. Setting
         // the points will also magically advance us to the next hand.
         if (team0Set || team1Set) {
@@ -243,7 +144,7 @@ public class Game implements Serializable {
      * @param points1 Points value for team 1
      */
     public void setPoints(int points0, int points1) {
-        hands[hand].points = new int[]{points0, points1};
+        hands[hand].setPoints(points0, points1);
     }
 
     /**
@@ -260,7 +161,7 @@ public class Game implements Serializable {
     public boolean isPointsPhase() {
         // We're ready to score points if we have a valid
         // hand with valid meld, but not yet any points.
-        return hands[hand] != null && hands[hand].meld != null && hands[hand].points == null;
+        return hands[hand] != null && hands[hand].meldValid() && !hands[hand].pointsValid();
     }
 
     /**
@@ -269,7 +170,7 @@ public class Game implements Serializable {
     public boolean isGameFinished() {
         // The game is over when it's the last (i.e. index 3)
         // hand, and points have been scored for that hand.
-        return hand == 3 && hands[hand] != null && hands[hand].points != null;
+        return hand == 3 && hands[hand] != null && hands[hand].pointsValid();
     }
 
     /**
