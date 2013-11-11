@@ -85,7 +85,7 @@ public class BidActivity extends ScoresheetActivity {
      *
      * @param button The clicked button that called this method
      */
-    public void onClick(View button) {
+    public void adjustBid(View button) {
         // Grab the bid value and adjust accordingly.
         int bid = Integer.parseInt(bidText.getText().toString());
         switch (button.getId()) {

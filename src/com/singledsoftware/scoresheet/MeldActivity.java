@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 /**
  * Provides interface for user to enter the meld for a hand.
- * 
+ *
  * @author Judson D Neer
  * @see ScoresheetActivity
  */
@@ -23,7 +23,7 @@ public class MeldActivity extends ScoresheetActivity {
     private static final int MINIMUM_MELD = 0;
     private static final int DEFAULT_MELD_BIDDER = 15;
     private static final int DEFAULT_MELD_NONBIDDER = 7;
-    
+
     // References to various view widgets.
     private TextView team0Text;
     private TextView team1Text;
@@ -76,10 +76,10 @@ public class MeldActivity extends ScoresheetActivity {
 
     /**
      * Adjusts the meld values up or down.
-     * 
-     * @param button The clicked button that called this method 
+     *
+     * @param button The clicked button that called this method
      */
-    public void onClick(View button) {
+    public void adjustMeld(View button) {
         // Grab the relevant meld values and adjust accordingly.
         int meld0 = Integer.parseInt(meld0Text.getText().toString());
         int meld1 = Integer.parseInt(meld1Text.getText().toString());
@@ -99,10 +99,10 @@ public class MeldActivity extends ScoresheetActivity {
         meld0Text.setText(meld0 + "");
         meld1Text.setText(meld1 + "");
     }
-    
+
     /**
      * Executes an action based on menu selection.
-     * 
+     *
      * @param item The clicked menu item that called this method
      */
     public void takeAction(MenuItem item) {
@@ -123,5 +123,5 @@ public class MeldActivity extends ScoresheetActivity {
                 break;
         }
     }
-    
+
 }

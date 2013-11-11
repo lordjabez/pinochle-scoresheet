@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 /**
  * Provides interface for user to enter the points for a hand.
- * 
+ *
  * @author Judson D Neer
  * @see ScoresheetActivity
  */
@@ -24,7 +24,7 @@ public class PointsActivity extends ScoresheetActivity {
     private static final int MAXIMUM_POINTS = 25;
     private static final int DEFAULT_POINTS_BIDDER = 17;
     private static final int DEFAULT_POINTS_NONBIDDER = 8;
-    
+
     // References to various view widgets.
     private TextView team0Text;
     private TextView team1Text;
@@ -81,10 +81,10 @@ public class PointsActivity extends ScoresheetActivity {
 
     /**
      * Adjusts the point values up or down.
-     * 
-     * @param button The clicked button that called this method 
+     *
+     * @param button The clicked button that called this method
      */
-    public void onClick(View button) {
+    public void adjustPoints(View button) {
         // Grab the relevant point values and adjust accordingly.
         int points0 = Integer.parseInt(points0Text.getText().toString());
         int points1 = Integer.parseInt(points1Text.getText().toString());
@@ -109,10 +109,10 @@ public class PointsActivity extends ScoresheetActivity {
         points0Text.setText(points0 + "");
         points1Text.setText(points1 + "");
     }
-    
+
     /**
      * Executes an action based on menu selection.
-     * 
+     *
      * @param item The clicked menu item that called this method
      */
     public void takeAction(MenuItem item) {
@@ -133,5 +133,5 @@ public class PointsActivity extends ScoresheetActivity {
                 break;
         }
     }
-    
+
 }

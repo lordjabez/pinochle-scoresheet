@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="onClick"
+                android:onClick="adjustBid"
                 android:text="@string/up" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="onClick"
+                android:onClick="adjustBid"
                 android:text="@string/down" />
 
         </LinearLayout>
