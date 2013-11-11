@@ -11,6 +11,12 @@
         android:title="@string/undo">
     </item>
     <item
+        android:id="@+id/main_action"
+        android:onClick="takeAction"
+        android:showAsAction="ifRoom"
+        android:title="@string/main">
+    </item>
+    <item
         android:id="@+id/new_action"
         android:onClick="takeAction"
         android:showAsAction="ifRoom"

@@ -20,6 +20,8 @@ public class MainActivity extends ScoresheetActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Going to the main activity always creates a new game object.
+        game = new Game();
     }
 
     /**
