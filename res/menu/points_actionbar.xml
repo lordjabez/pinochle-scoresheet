@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2013 Judson D Neer -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/undo_action"
+        android:onClick="takeAction"
+        android:showAsAction="ifRoom"
+        android:title="@string/undo">
+    </item>
+    <item
+        android:id="@+id/skip_action"
+        android:onClick="takeAction"
+        android:showAsAction="ifRoom"
+        android:title="@string/skip">
+    </item>
+    <item
+        android:id="@+id/ok_action"
+        android:onClick="takeAction"
+        android:showAsAction="ifRoom"
+        android:title="@string/ok">
+    </item>
+
+</menu>

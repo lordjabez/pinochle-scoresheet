@@ -58,13 +58,12 @@ public class PointsActivity extends ScoresheetActivity {
         team1Text.setText(game.getPlayer(1) + " & " + game.getPlayer(3));
         // Set the point value indicators.
         if (game.bidderOnTeam(0)) {
-            points0Text.setText(DEFAULT_POINTS_BIDDER + "");
-            points1Text.setText(DEFAULT_POINTS_NONBIDDER + "");
+            setPoints(DEFAULT_POINTS_BIDDER, DEFAULT_POINTS_NONBIDDER);
         }
         else {
-            points0Text.setText(DEFAULT_POINTS_NONBIDDER + "");
-            points1Text.setText(DEFAULT_POINTS_BIDDER + "");
+            setPoints(DEFAULT_POINTS_NONBIDDER, DEFAULT_POINTS_BIDDER);
         }
+        //
         // Update the status widget with new game data.
         statusFragment.update(game);
     }
@@ -75,8 +74,31 @@ public class PointsActivity extends ScoresheetActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.game_actionbar, menu);
+        inflater.inflate(R.menu.points_actionbar, menu);
         return true;
+    }
+
+    /**
+     * Helper function to set new point values, making sure they're within
+     * range and also updating the adjust buttons' enable/disable statuses.
+     *
+     * @param points0 New point value for team 0
+     * @param points1 New point value for team 1
+     */
+    private void setPoints(int points0, int points1) {
+        // Ensure point values are within acceptable ranges,
+        // and also disable the up/down buttons if needed.
+        points0 = Math.max(points0, MINIMUM_POINTS);
+        points0 = Math.min(points0, MAXIMUM_POINTS);
+        points1 = Math.max(points1, MINIMUM_POINTS);
+        points1 = Math.min(points1, MAXIMUM_POINTS);
+        points0UpButton.setEnabled(points0 < MAXIMUM_POINTS);
+        points1UpButton.setEnabled(points1 < MAXIMUM_POINTS);
+        points0DownButton.setEnabled(points0 > MINIMUM_POINTS);
+        points1DownButton.setEnabled(points1 > MINIMUM_POINTS);
+        // Set the point indicators appropriately.
+        points0Text.setText(points0 + "");
+        points1Text.setText(points1 + "");
     }
 
     /**
@@ -88,26 +110,15 @@ public class PointsActivity extends ScoresheetActivity {
         // Grab the relevant point values and adjust accordingly.
         int points0 = Integer.parseInt(points0Text.getText().toString());
         int points1 = Integer.parseInt(points1Text.getText().toString());
-        // Note here that when one point value goes up, the other must go down.
+        // We always make sure the point values add up to 25 after adjusting.
         switch (button.getId()) {
-            case R.id.points0_up_button: points0++; points1--; break;
-            case R.id.points0_down_button: points0--; points1++; break;
-            case R.id.points1_up_button: points1++; points0--; break;
-            case R.id.points1_down_button: points1--; points0++; break;
+            case R.id.points0_up_button:   points0++; points1 = 25 - points0; break;
+            case R.id.points0_down_button: points0--; points1 = 25 - points0; break;
+            case R.id.points1_up_button:   points1++; points0 = 25 - points1; break;
+            case R.id.points1_down_button: points1--; points0 = 25 - points1; break;
         }
-        // Ensure point values are within acceptable ranges,
-        // and also disable the up/down buttons if needed.
-        points0 = Math.max(points0, MINIMUM_POINTS);
-        points0 = Math.min(points0, MAXIMUM_POINTS);
-        points1 = Math.max(points1, MINIMUM_POINTS);
-        points1 = Math.min(points1, MAXIMUM_POINTS);
-        points0UpButton.setEnabled(points0 < MAXIMUM_POINTS);
-        points0DownButton.setEnabled(points0 > MINIMUM_POINTS);
-        points1UpButton.setEnabled(points1 < MAXIMUM_POINTS);
-        points1DownButton.setEnabled(points1 > MINIMUM_POINTS);
-        // Set the point indicators appropriately.
-        points0Text.setText(points0 + "");
-        points1Text.setText(points1 + "");
+        // Finally set the new point values.
+        setPoints(points0, points1);
     }
 
     /**
@@ -120,6 +131,10 @@ public class PointsActivity extends ScoresheetActivity {
             case R.id.undo_action:
                 this.finish();
                 break;
+            case R.id.skip_action:
+                // To skip playing the hand, simply set the point
+                // values to zero and fall through to the next case.
+                setPoints(0, 0);
             case R.id.ok_action:
                 // Save point data to the game object before proceeding.
                 int points0 = Integer.parseInt(points0Text.getText().toString());
