@@ -121,8 +121,7 @@ public class BidActivity extends ScoresheetActivity {
                 int bidder = getCheckedIndex(bidderGroup);
                 int trump = getCheckedIndex(trumpGroup);
                 game.setBid(bid, bidder, trump);
-                ScoresheetIntent intent = new ScoresheetIntent(this, MeldActivity.class, game);
-                startActivity(intent);
+                startActivity(new ScoresheetIntent(this, MeldActivity.class, game));
                 break;
         }
     }

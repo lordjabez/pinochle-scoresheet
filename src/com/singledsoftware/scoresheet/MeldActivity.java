@@ -118,8 +118,7 @@ public class MeldActivity extends ScoresheetActivity {
                 // It's possible that the outcome of the hand is decided after melding,
                 // and if so jump right to the next bid. Otherwise go to the points round.
                 Class<?> activityClass = game.isPointsPhase() ? PointsActivity.class : BidActivity.class;
-                ScoresheetIntent intent = new ScoresheetIntent(this, activityClass, game);
-                startActivity(intent);
+                startActivity(new ScoresheetIntent(this, activityClass, game));
                 break;
         }
     }

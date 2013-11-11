@@ -58,7 +58,7 @@ public class PlayersActivity extends ScoresheetActivity {
     public void takeAction(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.main_action:
-                this.finish();
+                startActivity(new ScoresheetIntent(this, MainActivity.class, game));
                 break;
             case R.id.clear_action:
                 // Erase all player names from the view widgets.
@@ -71,8 +71,7 @@ public class PlayersActivity extends ScoresheetActivity {
                 for (int p = 0; p < 4; p++) {
                     game.setPlayer(p, playerName[p].getText().toString());
                 }
-                ScoresheetIntent intent = new ScoresheetIntent(this, BidActivity.class, game);
-                startActivity(intent);
+                startActivity(new ScoresheetIntent(this, BidActivity.class, game));
                 break;
         }
     }

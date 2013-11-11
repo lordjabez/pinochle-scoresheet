@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 /**
  * Displays final game results.
- * 
+ *
  * @author Judson D Neer
  * @see ScoresheetActivity
  */
@@ -43,7 +43,7 @@ public class FinishedActivity extends ScoresheetActivity {
         int total1 = game.getTotal(1);
         String score = Math.max(total0, total1) + " to " + Math.min(total0, total1);
         int winningTeam = game.getWinningTeam();
-        // Fill in the view widgets with the values from above. 
+        // Fill in the view widgets with the values from above.
         finalScoreText.setText(score);
         if (winningTeam >= 0) {
             String winners = winningTeam == 0 ? team0 : team1;
@@ -73,7 +73,7 @@ public class FinishedActivity extends ScoresheetActivity {
 
     /**
      * Executes an action based on menu selection.
-     * 
+     *
      * @param item The clicked menu item that called this method
      */
     public void takeAction(MenuItem item) {
@@ -82,10 +82,9 @@ public class FinishedActivity extends ScoresheetActivity {
                 this.finish();
                 break;
             case R.id.new_action:
-                ScoresheetIntent intent = new ScoresheetIntent(this, PlayersActivity.class, game);
-                startActivity(intent);
+                startActivity(new ScoresheetIntent(this, PlayersActivity.class, game));
                 break;
         }
     }
-    
+
 }
