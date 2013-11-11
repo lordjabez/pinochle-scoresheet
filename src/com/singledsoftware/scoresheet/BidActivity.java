@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 /**
  * Provides interface for user to enter the bid for a hand.
- * 
+ *
  * @author Judson D Neer
  * @see ScoresheetActivity
  */
@@ -24,7 +24,7 @@ public class BidActivity extends ScoresheetActivity {
     // as an anecdotally typical bid in the Neer household.
     private static final int MINIMUM_BID = 15;
     private static final int DEFAULT_BID = 32;
-    
+
     // References to various view widgets.
     private Button bidDownButton;
     private TextView bidText;
@@ -52,6 +52,8 @@ public class BidActivity extends ScoresheetActivity {
             RadioButton bidderRadio = (RadioButton)bidderGroup.getChildAt(p);
             bidderRadio.setText(game.getPlayer(p));
         }
+        // Advance to the next hand.
+        game.nextHand();
         // Update the status widget with new game data.
         statusFragment.update(game);
     }
@@ -65,11 +67,11 @@ public class BidActivity extends ScoresheetActivity {
         inflater.inflate(R.menu.game_actionbar, menu);
         return true;
     }
-    
+
     /**
      * Convenience method that gets the index value for
      * the currently selected item in a radio button group.
-     * 
+     *
      * @param group The relevant radio button group
      * @return The index value for the selected item
      */
@@ -80,8 +82,8 @@ public class BidActivity extends ScoresheetActivity {
 
     /**
      * Adjusts the bid value up or down.
-     * 
-     * @param button The clicked button that called this method 
+     *
+     * @param button The clicked button that called this method
      */
     public void onClick(View button) {
         // Grab the bid value and adjust accordingly.
@@ -94,7 +96,7 @@ public class BidActivity extends ScoresheetActivity {
         // disable the down button if it's reached that point.
         if (bid <= MINIMUM_BID) {
             bid = MINIMUM_BID;
-            bidDownButton.setEnabled(false);            
+            bidDownButton.setEnabled(false);
         }
         else {
             bidDownButton.setEnabled(true);
@@ -102,10 +104,10 @@ public class BidActivity extends ScoresheetActivity {
         // Set the bid value indicator appropriately.
         bidText.setText(bid + "");
     }
-    
+
     /**
      * Executes an action based on menu selection.
-     * 
+     *
      * @param item The clicked menu item that called this method
      */
     public void takeAction(MenuItem item) {
@@ -124,5 +126,5 @@ public class BidActivity extends ScoresheetActivity {
                 break;
         }
     }
-    
+
 }

@@ -117,20 +117,17 @@ public class Game implements Serializable {
     // A game contains four players, whose names are stored here.
     private final String[] players = {"", "", "", ""};
 
-    // A game also contains four hands, which are indexed 0 to 3.
+    // A game also contains four hands, which are indexed 0 to 3. We start with an
+    // index of -1 so it advances to zero correctly at the start of the first hand.
     private final Hand[] hands = {null, null, null, null};
-    private int hand = 0;
-
-    // A game has four phases as stored below.
-    private enum Phases {BID, MELD, POINTS, FINISHED};
-    private Phases phase = Phases.BID;
+    private int hand = -1;
 
     /**
      * @param p Player index (0-4 for players around the table, starting to the left of scorekeeper)
      * @return True if the player is the dealer
      */
     public boolean isDealer(int p) {
-        return p == hand;
+        return hand == p;
     }
 
     /**
@@ -201,6 +198,15 @@ public class Game implements Serializable {
     }
 
     /**
+     * Advance the game to the next hand.
+     */
+    public void nextHand() {
+        if (hand < 3) {
+            hand++;
+        }
+    }
+
+    /**
      * Sets the bid values for the current hand.
      *
      * @param bid Bid value
@@ -209,8 +215,6 @@ public class Game implements Serializable {
      */
     public void setBid(int bid, int bidder, int trump) {
         hands[hand] = new Hand(bid, bidder, trump);
-        // Now that the bid is set we move on to the meld phase.
-        phase = Phases.MELD;
     }
 
     /**
@@ -221,17 +225,14 @@ public class Game implements Serializable {
      */
     public void setMeld(int meld0, int meld1) {
         hands[hand].meld = new int[]{meld0, meld1};
-        // We check to see if the hand can be won given the meld values
-        // before deciding which phase to move to next. To be possible
-        // the bidding team must be within 25 points of their bid value.
-        if ((bidderOnTeam(0) && hands[hand].bid - meld0 > 25) ||
-            (bidderOnTeam(1) && hands[hand].bid - meld1 > 25)) {
-            // If they can't make it, both teams score zero points.
+        // We check to see if the hand can be won given the meld values. To be
+        // possible the bidding team must be within 25 points of their bid value.
+        boolean team0Set = bidderOnTeam(0) && hands[hand].bid - meld0 > 25;
+        boolean team1Set = bidderOnTeam(1) && hands[hand].bid - meld1 > 25;
+        // If they can't make it, both teams score zero points. Setting
+        // the points will also magically advance us to the next hand.
+        if (team0Set || team1Set) {
             setPoints(0, 0);
-        }
-        // Otherwise we go to the points phase.
-        else {
-            phase = Phases.POINTS;
         }
     }
 
@@ -243,16 +244,6 @@ public class Game implements Serializable {
      */
     public void setPoints(int points0, int points1) {
         hands[hand].points = new int[]{points0, points1};
-        // If we're not on the last hand, increment our hand
-        // counter and go to the bid phase for the next hand.
-        if (hand < 3) {
-            hand++;
-            phase = Phases.BID;
-        }
-        // Otherwise the game is over.
-        else {
-            phase = Phases.FINISHED;
-        }
     }
 
     /**
@@ -264,31 +255,21 @@ public class Game implements Serializable {
     }
 
     /**
-     * @return True if the game is in a bid phase
-     */
-    public boolean isBidPhase() {
-        return phase == Phases.BID;
-    }
-
-    /**
-     * @return True if the game is in a meld phase
-     */
-    public boolean isMeldPhase() {
-        return phase == Phases.MELD;
-    }
-
-    /**
      * @return True if the game is in a points phase
      */
     public boolean isPointsPhase() {
-        return phase == Phases.POINTS;
+        // We're ready to score points if we have a valid
+        // hand with valid meld, but not yet any points.
+        return hands[hand] != null && hands[hand].meld != null && hands[hand].points == null;
     }
 
     /**
      * @return True if the game is completed
      */
     public boolean isGameFinished() {
-        return phase == Phases.FINISHED;
+        // The game is over when it's the last (i.e. index 3)
+        // hand, and points have been scored for that hand.
+        return hand == 3 && hands[hand] != null && hands[hand].points != null;
     }
 
     /**
