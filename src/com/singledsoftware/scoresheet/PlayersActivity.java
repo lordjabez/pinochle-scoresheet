@@ -10,14 +10,14 @@ import android.widget.EditText;
 
 /**
  * Prompts user to enter the names of all four players.
- * 
+ *
  * @author Judson D Neer
  * @see ScoresheetActivity
  */
 public class PlayersActivity extends ScoresheetActivity {
-    
+
     // These four text fields contain the player names.
-    private EditText[] playerName = new EditText[4];
+    private final EditText[] playerName = new EditText[4];
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -31,10 +31,13 @@ public class PlayersActivity extends ScoresheetActivity {
         playerName[1] = (EditText)this.findViewById(R.id.player1name_edit);
         playerName[2] = (EditText)this.findViewById(R.id.player2name_edit);
         playerName[3] = (EditText)this.findViewById(R.id.player3name_edit);
-        // Populate the edit fields with names from the game object.
+        // Populate the edit fields with names from the existing game object. This is
+        // done as a convenience so the user doesn't need to retype them between games.
         for (int p = 0; p < 4; p++) {
             playerName[p].setText(game.getPlayer(p));
         }
+        // Finally create a new game object.
+        game = new Game();
     }
 
     /**
@@ -49,7 +52,7 @@ public class PlayersActivity extends ScoresheetActivity {
 
     /**
      * Executes an action based on menu selection.
-     * 
+     *
      * @param item The clicked menu item that called this methods
      */
     public void takeAction(MenuItem item) {
@@ -67,5 +70,5 @@ public class PlayersActivity extends ScoresheetActivity {
                 break;
         }
     }
-    
+
 }
