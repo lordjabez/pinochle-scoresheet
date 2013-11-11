@@ -1,31 +1,37 @@
+// Copyright 2013 Judson D Neer
+
 package com.singledsoftware.scoresheet;
 
 import android.os.Bundle;
 import android.view.View;
-import android.app.Activity;
 import android.content.Intent;
 
-public class MainActivity extends Activity {
+/**
+ * Provides the main activity for the Scoresheet application.
+ * 
+ * @see ScoresheetActivity
+ * @author Judson D Neer
+ */
+public class MainActivity extends ScoresheetActivity {
 
+    /*
+     * (non-Javadoc)
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setWindowAnimations(0);
         setContentView(R.layout.activity_main);
     }
-
-    public void startGame(View button) {
-        Game game = new Game();
-        Intent intent = new Intent(this, PlayersActivity.class);
-        intent.putExtra("game", game);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-    }
     
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(0, 0);
+    /**
+     * Performs the actions required to start a new game.
+     * 
+     * @param button The clicked button that called this method
+     */
+    public void startGame(View button) {
+        Intent intent = new ScoresheetIntent(this, PlayersActivity.class, game);
+        startActivity(intent);
     }
     
 }

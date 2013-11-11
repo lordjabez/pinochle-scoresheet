@@ -1,49 +1,47 @@
+// Copyright 2013 Judson D Neer
+
 package com.singledsoftware.scoresheet;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-public class PlayersActivity extends Activity {
+/**
+ * Prompts user to enter the names of all four players.
+ * 
+ * @author Judson D Neer
+ * @see ScoresheetActivity
+ */
+public class PlayersActivity extends ScoresheetActivity {
     
+    // These four text fields contain the player names.
     private EditText[] playerName = new EditText[4];
-    
-    private Game game = null;
 
+    /*
+     * (non-Javadoc)
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setWindowAnimations(0);
         setContentView(R.layout.activity_players);
+        // Grab references to each of the player name edit widgets.
         playerName[0] = (EditText)this.findViewById(R.id.player0name_edit);
         playerName[1] = (EditText)this.findViewById(R.id.player1name_edit);
         playerName[2] = (EditText)this.findViewById(R.id.player2name_edit);
         playerName[3] = (EditText)this.findViewById(R.id.player3name_edit);
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            game = (Game)extras.getSerializable("game");
-        }
-        if (savedInstanceState != null) {
-            game = (Game)savedInstanceState.getSerializable("game");
-        }
-        if (game == null) {
-            game = new Game();
-        }
+        // Populate the edit fields with names from the game object.
         for (int p = 0; p < 4; p++) {
             playerName[p].setText(game.getPlayer(p));
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle instanceState) {
-        super.onSaveInstanceState(instanceState);
-        instanceState.putSerializable("game", game);
-    }
-
+    /*
+     * (non-Javadoc)
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -51,30 +49,25 @@ public class PlayersActivity extends Activity {
         return true;
     }
 
+    /**
+     * Executes an action based on menu selection.
+     * 
+     * @param item The clicked menu item that called this methods
+     */
     public void takeAction(MenuItem item) {
-        Intent intent;
         switch (item.getItemId()) {
             case R.id.main_action:
-                intent = new Intent(this, PlayersActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
+                this.finish();
                 break;
             case R.id.ok_action:
+                // Copy the names from the edit fields to the game object.
                 for (int p = 0; p < 4; p++) {
                     game.setPlayer(p, playerName[p].getText().toString());
                 }
-                intent = new Intent(this, BidActivity.class);
-                intent.putExtra("game", game);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                ScoresheetIntent intent = new ScoresheetIntent(this, BidActivity.class, game);
                 startActivity(intent);
                 break;
         }
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(0, 0);
     }
     
 }

@@ -1,9 +1,8 @@
+// Copyright 2013 Judson D Neer
+
 package com.singledsoftware.scoresheet;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,73 +12,88 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class BidActivity extends Activity {
+/**
+ * Provides interface for user to enter the bid for a hand.
+ * 
+ * @author Judson D Neer
+ * @see ScoresheetActivity
+ */
+public class BidActivity extends ScoresheetActivity {
 
+    // The minimum bid is a rule. The default bid was chosen
+    // as an anecdotally typical bid in the Neer household.
     private static final int MINIMUM_BID = 15;
     private static final int DEFAULT_BID = 32;
     
+    // References to various view widgets.
     private Button bidDownButton;
     private TextView bidText;
     private RadioGroup bidderGroup;
     private RadioGroup trumpGroup;
-    
     private StatusFragment statusFragment;
-        
-    private Game game = null;
 
+    /*
+     * (non-Javadoc)
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setWindowAnimations(0);
         setContentView(R.layout.activity_bid);
+        // Grab references to various view widgets.
         bidDownButton = (Button)this.findViewById(R.id.bid_down_button);
         bidText = (TextView)this.findViewById(R.id.bid_text);
         bidderGroup = (RadioGroup)this.findViewById(R.id.bidder_radiogroup);
         trumpGroup = (RadioGroup)this.findViewById(R.id.trump_radiogroup);
-        FragmentManager fragments = getFragmentManager();
-        statusFragment = (StatusFragment)fragments.findFragmentById(R.id.status_fragment);
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            game = (Game)extras.getSerializable("game");
-        }
-        if (savedInstanceState != null) {
-            game = (Game)savedInstanceState.getSerializable("game");
-        }
-        if (game == null) {
-            game = new Game();
-        }
+        statusFragment = (StatusFragment)getFragmentManager().findFragmentById(R.id.status_fragment);
+        // Populate the bid text item with default info.
         bidText.setText(DEFAULT_BID + "");
+        // Set the player names for the selection radio buttons.
         for (int p = 0; p < 4; p++) {
             RadioButton bidderRadio = (RadioButton)bidderGroup.getChildAt(p);
             bidderRadio.setText(game.getPlayer(p));
         }
+        // Update the status widget with new game data.
         statusFragment.update(game);
     }
 
+    /*
+     * (non-Javadoc)
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.game_actionbar, menu);
         return true;
     }
-
-    @Override
-    protected void onSaveInstanceState(Bundle instanceState) {
-        super.onSaveInstanceState(instanceState);
-        instanceState.putSerializable("game", game);
-    }
-
+    
+    /**
+     * Convenience method that gets the index value for
+     * the currently selected item in a radio button group.
+     * 
+     * @param group The relevant radio button group
+     * @return The index value for the selected item
+     */
     private int getCheckedIndex(RadioGroup group) {
         RadioButton radio = (RadioButton)group.findViewById(group.getCheckedRadioButtonId());
         return group.indexOfChild(radio);
     }
 
+    /**
+     * Adjusts the bid value up or down.
+     * 
+     * @param button The clicked button that called this method 
+     */
     public void onClick(View button) {
+        // Grab the bid value and adjust accordingly.
         int bid = Integer.parseInt(bidText.getText().toString());
         switch (button.getId()) {
             case R.id.bid_up_button: bid++; break;
             case R.id.bid_down_button: bid--; break;
         }
+        // Don't let the bid go below the minimum value. Also
+        // disable the down button if it's reached that point.
         if (bid <= MINIMUM_BID) {
             bid = MINIMUM_BID;
             bidDownButton.setEnabled(false);            
@@ -87,31 +101,30 @@ public class BidActivity extends Activity {
         else {
             bidDownButton.setEnabled(true);
         }
+        // Set the bid value indicator appropriately.
         bidText.setText(bid + "");
     }
     
+    /**
+     * Executes an action based on menu selection.
+     * 
+     * @param item The clicked menu item that called this method
+     */
     public void takeAction(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.undo_action:
                 this.finish();
                 break;
             case R.id.ok_action:
+                // Save the bid data to the game object before proceeding.
                 int bid = Integer.parseInt(bidText.getText().toString());
                 int bidder = getCheckedIndex(bidderGroup);
                 int trump = getCheckedIndex(trumpGroup);
                 game.setBid(bid, bidder, trump);
-                Intent intent = new Intent(this, MeldActivity.class);
-                intent.putExtra("game", game);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                ScoresheetIntent intent = new ScoresheetIntent(this, MeldActivity.class, game);
                 startActivity(intent);
                 break;
         }
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(0, 0);
     }
     
 }
