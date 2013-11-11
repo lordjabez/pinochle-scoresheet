@@ -22,8 +22,8 @@ public class PointsActivity extends ScoresheetActivity {
     // based on anecdotally typical point results in the Neer household.
     private static final int MINIMUM_POINTS = 0;
     private static final int MAXIMUM_POINTS = 25;
-    private static final int DEFAULT_POINTS_BIDDER = 17;
-    private static final int DEFAULT_POINTS_NONBIDDER = 8;
+    private static final int DEFAULT_POINTS_BIDDER = 18;
+    private static final int DEFAULT_POINTS_NONBIDDER = 7;
 
     // References to various view widgets.
     private TextView team0Text;

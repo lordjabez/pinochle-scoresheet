@@ -21,8 +21,8 @@ public class MeldActivity extends ScoresheetActivity {
     // Meld can't be less than zero. The default melds were chosen
     // based on anecdotally typical melds in the Neer household.
     private static final int MINIMUM_MELD = 0;
-    private static final int DEFAULT_MELD_BIDDER = 15;
-    private static final int DEFAULT_MELD_NONBIDDER = 7;
+    private static final int DEFAULT_MELD_BIDDER = 16;
+    private static final int DEFAULT_MELD_NONBIDDER = 6;
 
     // References to various view widgets.
     private TextView team0Text;
