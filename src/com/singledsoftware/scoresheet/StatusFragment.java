@@ -1,3 +1,5 @@
+// Copyright 2013 Judson D Neer
+
 package com.singledsoftware.scoresheet;
 
 import android.app.Fragment;
@@ -9,15 +11,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+/**
+ * Displays the running tally of bids, melds, and points.
+ *
+ * @author Judson D Neer
+ * @see android.app.Fragment
+ */
 public class StatusFragment extends Fragment {
-    
-    private TextView[] playerText = new TextView[4];
-    private TextView[][] scoreText = new TextView[4][2];
-    private TextView[] bidText = new TextView[4];
-    private TextView[] totalText = new TextView[2];
 
+    // References to view widgets. Having them in
+    // arrays makes it easy to populate them later.
+    private final TextView[] playerText = new TextView[4];
+    private final TextView[][] scoreText = new TextView[4][2];
+    private final TextView[] bidText = new TextView[4];
+    private final TextView[] totalText = new TextView[2];
+
+    /**
+     * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Grab references to various view widgets. Unfortunately
+        // Android doesn't make it easy to do this with loops.
         View resultView = inflater.inflate(R.layout.fragment_status, container, false);
         playerText[0] = (TextView)resultView.findViewById(R.id.player0_name);
         playerText[1] = (TextView)resultView.findViewById(R.id.player1_name);
@@ -39,8 +54,15 @@ public class StatusFragment extends Fragment {
         totalText[1] = (TextView)resultView.findViewById(R.id.total_team1);
         return resultView;
     }
-    
+
+    /**
+     * Updates all the view widgets with game data.
+     *
+     * @param game The object from which the view should be updated.
+     */
     public void update(Game game) {
+        // Set the player names. All these fields should be
+        // bold, and also we'll italicize the dealer name.
         for (int p = 0; p < 4; p++) {
             playerText[p].setText(game.getPlayer(p));
             if (game.isDealer(p)) {
@@ -50,6 +72,8 @@ public class StatusFragment extends Fragment {
                 playerText[p].setTypeface(null, Typeface.BOLD);
             }
         }
+        // For each hand and each team, set their respective score, as well
+        // as the bid information. Make the text color red if it's negative.
         for (int h = 0; h < 4; h++) {
             for (int t = 0; t < 2; t++) {
                 String score = game.getScore(h, t);
@@ -60,10 +84,11 @@ public class StatusFragment extends Fragment {
                 else {
                     scoreText[h][t].setTextColor(Color.BLACK);
                 }
-                
+
             }
             bidText[h].setText(game.getBid(h));
         }
+        // Get the total score for each team, again setting it red if negative.
         for (int t = 0; t < 2; t++) {
             String total = game.getTotalStr(t);
             totalText[t].setText(total);
@@ -75,5 +100,5 @@ public class StatusFragment extends Fragment {
             }
         }
     }
-    
+
 }
