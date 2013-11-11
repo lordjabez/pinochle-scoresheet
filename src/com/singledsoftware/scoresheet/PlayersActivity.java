@@ -60,6 +60,12 @@ public class PlayersActivity extends ScoresheetActivity {
             case R.id.main_action:
                 this.finish();
                 break;
+            case R.id.clear_action:
+                // Erase all player names from the view widgets.
+                for (int p = 0; p < 4; p++) {
+                    playerName[p].setText("");
+                }
+                break;
             case R.id.ok_action:
                 // Copy the names from the edit fields to the game object.
                 for (int p = 0; p < 4; p++) {

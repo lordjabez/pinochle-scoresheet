@@ -11,6 +11,12 @@
         android:title="@string/main">
     </item>
     <item
+        android:id="@+id/clear_action"
+        android:onClick="takeAction"
+        android:showAsAction="ifRoom"
+        android:title="@string/clear">
+    </item>
+    <item
         android:id="@+id/ok_action"
         android:onClick="takeAction"
         android:showAsAction="ifRoom"
