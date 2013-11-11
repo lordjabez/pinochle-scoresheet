@@ -1,9 +1,8 @@
+// Copyright 2013 Judson D Neer
+
 package com.singledsoftware.scoresheet;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,49 +10,48 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MeldActivity extends Activity {
+/**
+ * Provides interface for user to enter the meld for a hand.
+ * 
+ * @author Judson D Neer
+ * @see ScoresheetActivity
+ */
+public class MeldActivity extends ScoresheetActivity {
 
+    // Meld can't be less than zero. The default melds were chosen
+    // based on anecdotally typical melds in the Neer household.
     private static final int MINIMUM_MELD = 0;
     private static final int DEFAULT_MELD_BIDDER = 15;
     private static final int DEFAULT_MELD_NONBIDDER = 7;
     
+    // References to various view widgets.
     private TextView team0Text;
-    private Button meld0DownButton;
-    private TextView meld0Text;
-    
     private TextView team1Text;
-    private Button meld1DownButton;
+    private TextView meld0Text;
     private TextView meld1Text;
-    
+    private Button meld0DownButton;
+    private Button meld1DownButton;
     private StatusFragment statusFragment;
-        
-    private Game game = null;
 
+    /**
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setWindowAnimations(0);
         setContentView(R.layout.activity_meld);
+        // Grab references to various view widgets.
         team0Text = (TextView)this.findViewById(R.id.team0_text);
-        meld0DownButton = (Button)this.findViewById(R.id.meld0_down_button);
-        meld0Text = (TextView)this.findViewById(R.id.meld0_text);
         team1Text = (TextView)this.findViewById(R.id.team1_text);
-        meld1DownButton = (Button)this.findViewById(R.id.meld1_down_button);
+        meld0Text = (TextView)this.findViewById(R.id.meld0_text);
         meld1Text = (TextView)this.findViewById(R.id.meld1_text);
-        FragmentManager fragments = getFragmentManager();
-        statusFragment = (StatusFragment)fragments.findFragmentById(R.id.status_fragment);
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            game = (Game)extras.getSerializable("game");
-        }
-        if (savedInstanceState != null) {
-            game = (Game)savedInstanceState.getSerializable("game");
-        }
-        if (game == null) {
-            game = new Game();
-        }
+        meld0DownButton = (Button)this.findViewById(R.id.meld0_down_button);
+        meld1DownButton = (Button)this.findViewById(R.id.meld1_down_button);
+        statusFragment = (StatusFragment)getFragmentManager().findFragmentById(R.id.status_fragment);
+        // Set the headers above the meld adjustment buttons.
         team0Text.setText(game.getPlayer(0) + " & " + game.getPlayer(2));
         team1Text.setText(game.getPlayer(1) + " & " + game.getPlayer(3));
+        // Set the meld value indicators.
         if (game.bidderOnTeam(0)) {
             meld0Text.setText(DEFAULT_MELD_BIDDER + "");
             meld1Text.setText(DEFAULT_MELD_NONBIDDER + "");
@@ -62,9 +60,13 @@ public class MeldActivity extends Activity {
             meld0Text.setText(DEFAULT_MELD_NONBIDDER + "");
             meld1Text.setText(DEFAULT_MELD_BIDDER + "");
         }
+        // Update the status widget with new game data.
         statusFragment.update(game);
     }
 
+    /**
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -72,13 +74,13 @@ public class MeldActivity extends Activity {
         return true;
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle instanceState) {
-        super.onSaveInstanceState(instanceState);
-        instanceState.putSerializable("game", game);
-    }
-
+    /**
+     * Adjusts the meld values up or down.
+     * 
+     * @param button The clicked button that called this method 
+     */
     public void onClick(View button) {
+        // Grab the relevant meld values and adjust accordingly.
         int meld0 = Integer.parseInt(meld0Text.getText().toString());
         int meld1 = Integer.parseInt(meld1Text.getText().toString());
         switch (button.getId()) {
@@ -87,45 +89,39 @@ public class MeldActivity extends Activity {
             case R.id.meld1_up_button: meld1++; break;
             case R.id.meld1_down_button: meld1--; break;
         }
-        if (meld0 <= MINIMUM_MELD) {
-            meld0 = MINIMUM_MELD;
-            meld0DownButton.setEnabled(false);            
-        }
-        else {
-            meld0DownButton.setEnabled(true);
-        }
-        if (meld1 <= MINIMUM_MELD) {
-            meld1 = MINIMUM_MELD;
-            meld1DownButton.setEnabled(false);            
-        }
-        else {
-            meld1DownButton.setEnabled(true);
-        }
+        // Ensure meld values are within acceptable ranges,
+        // and also disable the down buttons if needed.
+        meld0 = Math.max(meld0, MINIMUM_MELD);
+        meld1 = Math.max(meld1, MINIMUM_MELD);
+        meld0DownButton.setEnabled(meld0 > MINIMUM_MELD);
+        meld1DownButton.setEnabled(meld1 > MINIMUM_MELD);
+        // Set the meld indicators appropriately.
         meld0Text.setText(meld0 + "");
         meld1Text.setText(meld1 + "");
     }
     
+    /**
+     * Executes an action based on menu selection.
+     * 
+     * @param item The clicked menu item that called this method
+     */
     public void takeAction(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.undo_action:
                 this.finish();
                 break;
             case R.id.ok_action:
+                // Save meld data to the game object before proceeding.
                 int meld0 = Integer.parseInt(meld0Text.getText().toString());
                 int meld1 = Integer.parseInt(meld1Text.getText().toString());
                 game.setMeld(meld0, meld1);
-                Intent intent = game.isPointsPhase() ? new Intent(this, PointsActivity.class) : new Intent(this, BidActivity.class);
-                intent.putExtra("game", game);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                // It's possible that the outcome of the hand is decided after melding,
+                // and if so jump right to the next bid. Otherwise go to the points round.
+                Class<?> activityClass = game.isPointsPhase() ? PointsActivity.class : BidActivity.class;
+                ScoresheetIntent intent = new ScoresheetIntent(this, activityClass, game);
                 startActivity(intent);
                 break;
         }
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(0, 0);
     }
     
 }

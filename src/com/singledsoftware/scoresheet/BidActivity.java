@@ -32,8 +32,7 @@ public class BidActivity extends ScoresheetActivity {
     private RadioGroup trumpGroup;
     private StatusFragment statusFragment;
 
-    /*
-     * (non-Javadoc)
+    /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
@@ -57,8 +56,7 @@ public class BidActivity extends ScoresheetActivity {
         statusFragment.update(game);
     }
 
-    /*
-     * (non-Javadoc)
+    /**
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
     @Override

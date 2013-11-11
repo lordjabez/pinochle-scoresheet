@@ -14,8 +14,7 @@ import android.content.Intent;
  */
 public class MainActivity extends ScoresheetActivity {
 
-    /*
-     * (non-Javadoc)
+    /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override

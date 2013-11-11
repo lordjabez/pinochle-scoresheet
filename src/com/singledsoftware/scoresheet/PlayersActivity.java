@@ -19,8 +19,7 @@ public class PlayersActivity extends ScoresheetActivity {
     // These four text fields contain the player names.
     private EditText[] playerName = new EditText[4];
 
-    /*
-     * (non-Javadoc)
+    /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
@@ -38,8 +37,7 @@ public class PlayersActivity extends ScoresheetActivity {
         }
     }
 
-    /*
-     * (non-Javadoc)
+    /**
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
     @Override

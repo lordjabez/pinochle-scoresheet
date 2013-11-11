@@ -9,17 +9,16 @@ import android.os.Bundle;
  * Base activity from which all other activities inherit. This
  * class provides some basic functionality such as saving/restoring
  * the game data object and disabling transition animations.
- * 
+ *
  * @author Judson D Neer
  * @see android.app.Activity
  */
 public abstract class ScoresheetActivity extends Activity {
-    
+
     // Stores game data.
     protected Game game = null;
 
-    /*
-     * (non-Javadoc)
+    /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
@@ -42,8 +41,7 @@ public abstract class ScoresheetActivity extends Activity {
         }
     }
 
-    /*
-     * (non-Javadoc)
+    /**
      * @see android.app.Activity#onSaveInstanceState(android.os.Bundle)
      */
     @Override
@@ -52,9 +50,8 @@ public abstract class ScoresheetActivity extends Activity {
         // Save our game object to the instance state.
         instanceState.putSerializable("game", game);
     }
-    
-    /*
-     * (non-Javadoc)
+
+    /**
      * @see android.app.Activity#finish()
      */
     @Override
@@ -63,5 +60,5 @@ public abstract class ScoresheetActivity extends Activity {
         // Prevent transition animation when leaving the activity.
         overridePendingTransition(0, 0);
     }
-    
+
 }
