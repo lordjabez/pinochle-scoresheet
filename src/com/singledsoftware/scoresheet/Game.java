@@ -84,13 +84,8 @@ class Game implements Serializable {
     public String getBid(int h) {
         // Check if the hand has been played
         if (hands[h] != null) {
-            // Get the player name, and abbreviate it to 3 characters if necessary.
-            String bidder = players[hands[h].getBidder()];
-            if (bidder.length() > 3) {
-                bidder = bidder.substring(0, 3);
-            }
             // The final result is the bid value and suit plus the bidder name.
-            return hands[h].getBidStr() + " " + bidder;
+            return hands[h].getBidStr() + "\n" + players[hands[h].getBidder()];
         }
         // If it hasn't been played, return an empty string.
         else {

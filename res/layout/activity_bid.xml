@@ -96,25 +96,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:checked="true" />
 
             <RadioButton
                 android:id="@+id/player1_bidder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:ellipsize="end" />
 
             <RadioButton
                 android:id="@+id/player2_bidder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:ellipsize="end" />
 
             <RadioButton
                 android:id="@+id/player3_bidder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:ellipsize="end" />
         </RadioGroup>
     </LinearLayout>
 

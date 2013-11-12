@@ -14,24 +14,28 @@
 
         <TextView
             android:id="@+id/player0_name"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:gravity="center"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/player1_name"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:gravity="center"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center"
             android:textStyle="bold" />
 
@@ -44,24 +48,29 @@
 
         <TextView
             android:id="@+id/player2_name"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:gravity="center"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/player3_name"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:gravity="center"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center"
             android:text="@string/bid"
             android:textStyle="bold" />
@@ -75,23 +84,27 @@
 
         <TextView
             android:id="@+id/hand0_team0"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center" />
 
         <TextView
             android:id="@+id/hand0_team1"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center" />
 
         <TextView
             android:id="@+id/hand0_bid"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:gravity="center" />
     </TableRow>
 
@@ -102,23 +115,27 @@
 
         <TextView
             android:id="@+id/hand1_team0"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center" />
 
         <TextView
             android:id="@+id/hand1_team1"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center" />
 
         <TextView
             android:id="@+id/hand1_bid"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:gravity="center" />
     </TableRow>
 
@@ -129,23 +146,27 @@
 
         <TextView
             android:id="@+id/hand2_team0"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center" />
 
         <TextView
             android:id="@+id/hand2_team1"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center" />
 
         <TextView
             android:id="@+id/hand2_bid"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:gravity="center" />
     </TableRow>
 
@@ -156,23 +177,27 @@
 
         <TextView
             android:id="@+id/hand3_team0"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center" />
 
         <TextView
             android:id="@+id/hand3_team1"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center" />
 
         <TextView
             android:id="@+id/hand3_bid"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:gravity="center" />
     </TableRow>
 
@@ -183,24 +208,27 @@
 
         <TextView
             android:id="@+id/total_team0"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/total_team1"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/status_item_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center"
             android:textStyle="bold" />
     </TableRow>

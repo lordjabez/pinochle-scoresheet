@@ -49,8 +49,8 @@ public class MeldActivity extends ScoresheetActivity {
         meld1DownButton = (Button)this.findViewById(R.id.meld1_down_button);
         statusFragment = (StatusFragment)getFragmentManager().findFragmentById(R.id.status_fragment);
         // Set the headers above the meld adjustment buttons.
-        team0Text.setText(game.getPlayer(0) + " & " + game.getPlayer(2));
-        team1Text.setText(game.getPlayer(1) + " & " + game.getPlayer(3));
+        team0Text.setText(game.getPlayer(0) + "\n" + game.getPlayer(2));
+        team1Text.setText(game.getPlayer(1) + "\n" + game.getPlayer(3));
         // Set the meld value indicators.
         if (game.bidderOnTeam(0)) {
             setMeld(DEFAULT_MELD_BIDDER, DEFAULT_MELD_NONBIDDER);

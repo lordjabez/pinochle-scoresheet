@@ -54,8 +54,8 @@ public class PointsActivity extends ScoresheetActivity {
         points1DownButton = (Button)this.findViewById(R.id.points1_down_button);
         statusFragment = (StatusFragment)getFragmentManager().findFragmentById(R.id.status_fragment);
         // Set the headers above the point adjustment buttons.
-        team0Text.setText(game.getPlayer(0) + " & " + game.getPlayer(2));
-        team1Text.setText(game.getPlayer(1) + " & " + game.getPlayer(3));
+        team0Text.setText(game.getPlayer(0) + "\n" + game.getPlayer(2));
+        team1Text.setText(game.getPlayer(1) + "\n" + game.getPlayer(3));
         // Set the point value indicators.
         if (game.bidderOnTeam(0)) {
             setPoints(DEFAULT_POINTS_BIDDER, DEFAULT_POINTS_NONBIDDER);
