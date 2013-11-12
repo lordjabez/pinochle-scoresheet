@@ -53,12 +53,10 @@ public class MeldActivity extends ScoresheetActivity {
         team1Text.setText(game.getPlayer(1) + " & " + game.getPlayer(3));
         // Set the meld value indicators.
         if (game.bidderOnTeam(0)) {
-            meld0Text.setText(DEFAULT_MELD_BIDDER + "");
-            meld1Text.setText(DEFAULT_MELD_NONBIDDER + "");
+            setMeld(DEFAULT_MELD_BIDDER, DEFAULT_MELD_NONBIDDER);
         }
         else {
-            meld0Text.setText(DEFAULT_MELD_NONBIDDER + "");
-            meld1Text.setText(DEFAULT_MELD_BIDDER + "");
+            setMeld(DEFAULT_MELD_NONBIDDER, DEFAULT_MELD_BIDDER);
         }
         // Update the status widget with new game data.
         statusFragment.update(game);
@@ -75,20 +73,13 @@ public class MeldActivity extends ScoresheetActivity {
     }
 
     /**
-     * Adjusts the meld values up or down.
+     * Helper function to set new meld values, making sure they're within
+     * range and also updating the adjust buttons' enable/disable statuses.
      *
-     * @param button The clicked button that called this method
+     * @param meld0 New meld value for team 0
+     * @param meld1 New meld value for team 1
      */
-    public void adjustMeld(View button) {
-        // Grab the relevant meld values and adjust accordingly.
-        int meld0 = Integer.parseInt(meld0Text.getText().toString());
-        int meld1 = Integer.parseInt(meld1Text.getText().toString());
-        switch (button.getId()) {
-            case R.id.meld0_up_button: meld0++; break;
-            case R.id.meld0_down_button: meld0--; break;
-            case R.id.meld1_up_button: meld1++; break;
-            case R.id.meld1_down_button: meld1--; break;
-        }
+    private void setMeld(int meld0, int meld1) {
         // Ensure meld values are within acceptable ranges,
         // and also disable the down buttons if needed.
         meld0 = Math.max(meld0, MINIMUM_MELD);
@@ -98,6 +89,25 @@ public class MeldActivity extends ScoresheetActivity {
         // Set the meld indicators appropriately.
         meld0Text.setText(meld0 + "");
         meld1Text.setText(meld1 + "");
+    }
+
+    /**
+     * Adjusts the meld values up or down.
+     *
+     * @param button The clicked button that called this method
+     */
+    public void adjustMeld(View button) {
+        // Grab the relevant meld values and adjust accordingly.
+        int meld0 = Integer.parseInt(meld0Text.getText().toString());
+        int meld1 = Integer.parseInt(meld1Text.getText().toString());
+        switch (button.getId()) {
+            case R.id.meld0_up_button:   meld0++; break;
+            case R.id.meld0_down_button: meld0--; break;
+            case R.id.meld1_up_button:   meld1++; break;
+            case R.id.meld1_down_button: meld1--; break;
+        }
+        // Finally set the new meld values.
+        setMeld(meld0, meld1);
     }
 
     /**

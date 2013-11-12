@@ -45,13 +45,13 @@ public class BidActivity extends ScoresheetActivity {
         bidderGroup = (RadioGroup)this.findViewById(R.id.bidder_radiogroup);
         trumpGroup = (RadioGroup)this.findViewById(R.id.trump_radiogroup);
         statusFragment = (StatusFragment)getFragmentManager().findFragmentById(R.id.status_fragment);
-        // Populate the bid text item with default info.
-        bidText.setText(DEFAULT_BID + "");
         // Set the player names for the selection radio buttons.
         for (int p = 0; p < 4; p++) {
             RadioButton bidderRadio = (RadioButton)bidderGroup.getChildAt(p);
             bidderRadio.setText(game.getPlayer(p));
         }
+        // Populate the bid text item with default info.
+        setBid(DEFAULT_BID);
         // Advance to the next hand.
         game.nextHand();
         // Update the status widget with new game data.
@@ -81,6 +81,21 @@ public class BidActivity extends ScoresheetActivity {
     }
 
     /**
+     * Helper function to set the new bid value, making sure it is within
+     * range and also updating the adjust buttons' enable/disable statuses.
+     *
+     * @param bid New bid value
+     */
+    private void setBid(int bid) {
+        // Ensure bid values is within acceptable range,
+        // and also disable the down button if needed.
+        bid = Math.max(bid, MINIMUM_BID);
+        bidDownButton.setEnabled(bid > MINIMUM_BID);
+        // Set the bid indicator appropriately.
+        bidText.setText(bid + "");
+    }
+
+    /**
      * Adjusts the bid value up or down.
      *
      * @param button The clicked button that called this method
@@ -89,20 +104,11 @@ public class BidActivity extends ScoresheetActivity {
         // Grab the bid value and adjust accordingly.
         int bid = Integer.parseInt(bidText.getText().toString());
         switch (button.getId()) {
-            case R.id.bid_up_button: bid++; break;
+            case R.id.bid_up_button:   bid++; break;
             case R.id.bid_down_button: bid--; break;
         }
-        // Don't let the bid go below the minimum value. Also
-        // disable the down button if it's reached that point.
-        if (bid <= MINIMUM_BID) {
-            bid = MINIMUM_BID;
-            bidDownButton.setEnabled(false);
-        }
-        else {
-            bidDownButton.setEnabled(true);
-        }
-        // Set the bid value indicator appropriately.
-        bidText.setText(bid + "");
+        // Finally set the new bid value.
+        setBid(bid);
     }
 
     /**
