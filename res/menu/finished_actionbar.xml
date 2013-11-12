@@ -20,7 +20,7 @@
         android:id="@+id/new_action"
         android:onClick="takeAction"
         android:showAsAction="ifRoom"
-        android:title="@string/new_game">
+        android:title="@string/new_">
     </item>
 
 </menu>

@@ -19,7 +19,7 @@
     <string name="ok">OK</string>
     <string name="undo">Undo</string>
     <string name="skip">Skip</string>
-    <string name="new_game">New Game</string>
+    <string name="new_">New</string>  <!-- Underscore required because "new" is a reserved name. -->
     <string name="bid">Bid</string>
     <string name="up">Up</string>
     <string name="down">Down</string>
