@@ -48,6 +48,13 @@ class Game implements Serializable {
     }
 
     /**
+     * @return The hand number (1-4)
+     */
+    public int getHand() {
+        return hand + 1;
+    }
+
+    /**
      * @param h Hand index (0-3)
      * @param t Team index (0 = players 0 & 2, 1 = players 1 & 3)
      * @return A team's score for a given hand

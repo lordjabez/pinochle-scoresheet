@@ -45,6 +45,10 @@ public class BidActivity extends ScoresheetActivity {
         bidderGroup = (RadioGroup)this.findViewById(R.id.bidder_radiogroup);
         trumpGroup = (RadioGroup)this.findViewById(R.id.trump_radiogroup);
         statusFragment = (StatusFragment)getFragmentManager().findFragmentById(R.id.status_fragment);
+        // Set the activity tile with the proper hand number.
+        int hand = game.getHand();
+        String title = this.getString(R.string.title_activity_bid, hand);
+        this.setTitle(title);
         // Set the player names for the selection radio buttons.
         for (int p = 0; p < 4; p++) {
             RadioButton bidderRadio = (RadioButton)bidderGroup.getChildAt(p);
