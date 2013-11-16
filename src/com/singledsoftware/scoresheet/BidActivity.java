@@ -45,6 +45,8 @@ public class BidActivity extends ScoresheetActivity {
         bidderGroup = (RadioGroup)this.findViewById(R.id.bidder_radiogroup);
         trumpGroup = (RadioGroup)this.findViewById(R.id.trump_radiogroup);
         statusFragment = (StatusFragment)getFragmentManager().findFragmentById(R.id.status_fragment);
+        // Advance to the next hand.
+        game.nextHand();
         // Set the activity tile with the proper hand number.
         int hand = game.getHand();
         String title = this.getString(R.string.title_activity_bid, hand);
@@ -56,8 +58,6 @@ public class BidActivity extends ScoresheetActivity {
         }
         // Populate the bid text item with default info.
         setBid(DEFAULT_BID);
-        // Advance to the next hand.
-        game.nextHand();
         // Update the status widget with new game data.
         statusFragment.update(game);
     }

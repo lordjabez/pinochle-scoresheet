@@ -9,10 +9,10 @@
     <string name="start_new_game">Start New Game</string>
 
     <string name="title_activity_players">Enter Player Names</string>
-    <string name="title_activity_bid">Enter Bid (Hand %1$d)</string>
-    <string name="title_activity_meld">Enter Meld (Hand %1$d)</string>
-    <string name="title_activity_points">Enter Points (Hand %1$d)</string>
-    <string name="title_activity_finished">Game Finished (Hand %1$d)</string>
+    <string name="title_activity_bid">Hand %1$d - Enter Bid</string>
+    <string name="title_activity_meld">Hand %1$d - Enter Meld</string>
+    <string name="title_activity_points">Hand %1$d - Enter Points</string>
+    <string name="title_activity_finished">Game Finished</string>
 
     <string name="main">Main</string>
     <string name="clear">Clear</string>
