@@ -48,6 +48,10 @@ public class MeldActivity extends ScoresheetActivity {
         meld0DownButton = (Button)this.findViewById(R.id.meld0_down_button);
         meld1DownButton = (Button)this.findViewById(R.id.meld1_down_button);
         statusFragment = (StatusFragment)getFragmentManager().findFragmentById(R.id.status_fragment);
+        // Set the activity tile with the proper hand number.
+        int hand = game.getHand();
+        String title = this.getString(R.string.title_activity_meld, hand);
+        this.setTitle(title);
         // Set the headers above the meld adjustment buttons.
         team0Text.setText(game.getPlayer(0) + "\n" + game.getPlayer(2));
         team1Text.setText(game.getPlayer(1) + "\n" + game.getPlayer(3));

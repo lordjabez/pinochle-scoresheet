@@ -53,6 +53,10 @@ public class PointsActivity extends ScoresheetActivity {
         points0DownButton = (Button)this.findViewById(R.id.points0_down_button);
         points1DownButton = (Button)this.findViewById(R.id.points1_down_button);
         statusFragment = (StatusFragment)getFragmentManager().findFragmentById(R.id.status_fragment);
+        // Set the activity tile with the proper hand number.
+        int hand = game.getHand();
+        String title = this.getString(R.string.title_activity_points, hand);
+        this.setTitle(title);
         // Set the headers above the point adjustment buttons.
         team0Text.setText(game.getPlayer(0) + "\n" + game.getPlayer(2));
         team1Text.setText(game.getPlayer(1) + "\n" + game.getPlayer(3));
