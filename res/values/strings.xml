@@ -24,11 +24,6 @@
     <string name="up">Up</string>
     <string name="down">Down</string>
 
-    <string name="player0_name">Malcolm</string>
-    <string name="player1_name">Zoe</string>
-    <string name="player2_name">Jayne</string>
-    <string name="player3_name">Kaylee</string>
-
     <string name="spades">Spades</string>
     <string name="diamonds">Diamonds</string>
     <string name="clubs">Clubs</string>
