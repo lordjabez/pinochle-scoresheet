@@ -81,9 +81,6 @@ public class FinishedActivity extends ScoresheetActivity {
             case R.id.main_action:
                 startActivity(new ScoresheetIntent(this, MainActivity.class, game));
                 break;
-            case R.id.new_action:
-                startActivity(new ScoresheetIntent(this, PlayersActivity.class, game));
-                break;
         }
     }
 

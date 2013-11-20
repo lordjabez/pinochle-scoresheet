@@ -20,8 +20,6 @@ public class MainActivity extends ScoresheetActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Going to the main activity always creates a new game object.
-        game = new Game();
     }
 
     /**
@@ -30,7 +28,30 @@ public class MainActivity extends ScoresheetActivity {
      * @param button The clicked button that called this method
      */
     public void startGame(View button) {
-        startActivity(new ScoresheetIntent(this, PlayersActivity.class, game));
+        startActivity(new ScoresheetIntent(this, PlayersActivity.class, new Game()));
+    }
+
+    /**
+     * Performs the actions required to resume an existing new game.
+     *
+     * @param button The clicked button that called this method
+     */
+    public void resumeGame(View button) {
+        if (game.isPlayersPhase()) {
+            startActivity(new ScoresheetIntent(this, PlayersActivity.class, game));
+        }
+        else if (game.isBidPhase()) {
+            startActivity(new ScoresheetIntent(this, BidActivity.class, game));
+        }
+        else if (game.isMeldPhase()) {
+            startActivity(new ScoresheetIntent(this, MeldActivity.class, game));
+        }
+        else if (game.isPointsPhase()) {
+            startActivity(new ScoresheetIntent(this, PointsActivity.class, game));
+        }
+        else if (game.isFinished()) {
+            startActivity(new ScoresheetIntent(this, FinishedActivity.class, game));
+        }
     }
 
 }

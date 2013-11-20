@@ -4,9 +4,10 @@
 
 <resources>
 
-    <string name="app_name">Scoresheet</string>
+    <string name="app_name">Pinochle Scoresheet</string>
 
     <string name="start_new_game">Start New Game</string>
+    <string name="resume_existing_game">Resume Existing Game</string>
 
     <string name="title_activity_players">Enter Player Names</string>
     <string name="title_activity_bid">Hand %1$d - Enter Bid</string>
@@ -19,7 +20,6 @@
     <string name="next">Next</string>
     <string name="undo">Undo</string>
     <string name="skip">Skip</string>
-    <string name="new_">New</string>  <!-- Underscore required because "new" is a reserved name. -->
     <string name="bid">Bid</string>
     <string name="up">Up</string>
     <string name="down">Down</string>

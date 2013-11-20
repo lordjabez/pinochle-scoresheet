@@ -36,8 +36,6 @@ public class PlayersActivity extends ScoresheetActivity {
         for (int p = 0; p < 4; p++) {
             playerName[p].setText(game.getPlayer(p));
         }
-        // Finally create a new game object.
-        game = new Game();
     }
 
     /**
@@ -58,6 +56,10 @@ public class PlayersActivity extends ScoresheetActivity {
     public void takeAction(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.main_action:
+                // Copy the names from the edit fields to the game object.
+                for (int p = 0; p < 4; p++) {
+                    game.setPlayer(p, playerName[p].getText().toString());
+                }
                 startActivity(new ScoresheetIntent(this, MainActivity.class, game));
                 break;
             case R.id.clear_action:
