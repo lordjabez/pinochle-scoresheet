@@ -78,9 +78,6 @@ public class FinishedActivity extends ScoresheetActivity {
      */
     public void takeAction(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.undo_action:
-                this.finish();
-                break;
             case R.id.main_action:
                 startActivity(new ScoresheetIntent(this, MainActivity.class, game));
                 break;

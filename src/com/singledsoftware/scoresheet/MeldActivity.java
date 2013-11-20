@@ -121,10 +121,7 @@ public class MeldActivity extends ScoresheetActivity {
      */
     public void takeAction(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.undo_action:
-                this.finish();
-                break;
-            case R.id.ok_action:
+            case R.id.next_action:
                 // Save meld data to the game object before proceeding.
                 int meld0 = Integer.parseInt(meld0Text.getText().toString());
                 int meld1 = Integer.parseInt(meld1Text.getText().toString());

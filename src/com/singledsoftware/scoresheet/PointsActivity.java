@@ -132,14 +132,11 @@ public class PointsActivity extends ScoresheetActivity {
      */
     public void takeAction(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.undo_action:
-                this.finish();
-                break;
             case R.id.skip_action:
                 // To skip playing the hand, simply set the point
                 // values to zero and fall through to the next case.
                 setPoints(0, 0);
-            case R.id.ok_action:
+            case R.id.next_action:
                 // Save point data to the game object before proceeding.
                 int points0 = Integer.parseInt(points0Text.getText().toString());
                 int points1 = Integer.parseInt(points1Text.getText().toString());

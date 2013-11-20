@@ -17,10 +17,10 @@
         android:title="@string/clear">
     </item>
     <item
-        android:id="@+id/ok_action"
+        android:id="@+id/next_action"
         android:onClick="takeAction"
         android:showAsAction="ifRoom"
-        android:title="@string/ok">
+        android:title="@string/next">
     </item>
 
 </menu>

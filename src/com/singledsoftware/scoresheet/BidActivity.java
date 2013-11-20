@@ -122,10 +122,7 @@ public class BidActivity extends ScoresheetActivity {
      */
     public void takeAction(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.undo_action:
-                this.finish();
-                break;
-            case R.id.ok_action:
+            case R.id.next_action:
                 // Save the bid data to the game object before proceeding.
                 int bid = Integer.parseInt(bidText.getText().toString());
                 int bidder = getCheckedIndex(bidderGroup);
