@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 /**
  * Displays the running tally of bids, melds, and points.
- *
+ * 
  * @author Judson D Neer
  * @see android.app.Fragment
  */
@@ -57,7 +57,7 @@ public class StatusFragment extends Fragment {
 
     /**
      * Updates all the view widgets with game data.
-     *
+     * 
      * @param game The object from which the view should be updated.
      */
     public void update(Game game) {

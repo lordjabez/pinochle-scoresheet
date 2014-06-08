@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * Stores data for a particular hand of a game.
- *
+ * 
  * @author Judson D Neer
  * @see java.io.Serializable
  */
@@ -31,7 +31,7 @@ class Hand implements Serializable {
 
     /**
      * Constructor.
-     *
+     * 
      * @param b New bid value
      * @param d New bidder index
      * @param u New trump index
@@ -68,12 +68,17 @@ class Hand implements Serializable {
      * @return A string representation of the hand's bid value and trump suit
      */
     public String getBidStr() {
-        switch(trump) {
-            case 0: return bid + " S";
-            case 1: return bid + " D";
-            case 2: return bid + " C";
-            case 3: return bid + " H";
-            default: return "";
+        switch (trump) {
+            case 0:
+                return bid + " S";
+            case 1:
+                return bid + " D";
+            case 2:
+                return bid + " C";
+            case 3:
+                return bid + " H";
+            default:
+                return "";
         }
     }
 
@@ -124,22 +129,22 @@ class Hand implements Serializable {
 
     /**
      * Sets new meld values.
-     *
+     * 
      * @param meld0 Meld for team 0
      * @param meld1 Meld for team 1
      */
     public void setMeld(int meld0, int meld1) {
-        meld = new int[]{meld0, meld1};
+        meld = new int[] {meld0, meld1};
     }
 
     /**
      * Sets new point values.
-     *
+     * 
      * @param points0 Points for team 0
      * @param points1 Points for team 1
      */
     public void setPoints(int points0, int points1) {
-        points = new int[]{points0, points1};
+        points = new int[] {points0, points1};
     }
 
 }

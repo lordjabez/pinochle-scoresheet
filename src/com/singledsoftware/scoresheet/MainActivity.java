@@ -7,7 +7,7 @@ import android.view.View;
 
 /**
  * Provides the main activity for the Scoresheet application.
- *
+ * 
  * @see ScoresheetActivity
  * @author Judson D Neer
  */
@@ -26,7 +26,7 @@ public class MainActivity extends ScoresheetActivity {
 
     /**
      * Performs the actions required to start a new game.
-     *
+     * 
      * @param button The clicked button that called this method
      */
     public void startGame(View button) {

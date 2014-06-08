@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 /**
  * Provides interface for user to enter the points for a hand.
- *
+ * 
  * @author Judson D Neer
  * @see ScoresheetActivity
  */
@@ -85,7 +85,7 @@ public class PointsActivity extends ScoresheetActivity {
     /**
      * Helper function to set new point values, making sure they're within
      * range and also updating the adjust buttons' enable/disable statuses.
-     *
+     * 
      * @param points0 New point value for team 0
      * @param points1 New point value for team 1
      */
@@ -107,7 +107,7 @@ public class PointsActivity extends ScoresheetActivity {
 
     /**
      * Adjusts the point values up or down.
-     *
+     * 
      * @param button The clicked button that called this method
      */
     public void adjustPoints(View button) {
@@ -116,10 +116,22 @@ public class PointsActivity extends ScoresheetActivity {
         int points1 = Integer.parseInt(points1Text.getText().toString());
         // We always make sure the point values add up to 25 after adjusting.
         switch (button.getId()) {
-            case R.id.points0_up_button:   points0++; points1 = 25 - points0; break;
-            case R.id.points0_down_button: points0--; points1 = 25 - points0; break;
-            case R.id.points1_up_button:   points1++; points0 = 25 - points1; break;
-            case R.id.points1_down_button: points1--; points0 = 25 - points1; break;
+            case R.id.points0_up_button:
+                points0++;
+                points1 = 25 - points0;
+                break;
+            case R.id.points0_down_button:
+                points0--;
+                points1 = 25 - points0;
+                break;
+            case R.id.points1_up_button:
+                points1++;
+                points0 = 25 - points1;
+                break;
+            case R.id.points1_down_button:
+                points1--;
+                points0 = 25 - points1;
+                break;
         }
         // Finally set the new point values.
         setPoints(points0, points1);
@@ -127,7 +139,7 @@ public class PointsActivity extends ScoresheetActivity {
 
     /**
      * Executes an action based on menu selection.
-     *
+     * 
      * @param item The clicked menu item that called this method
      */
     public void takeAction(MenuItem item) {

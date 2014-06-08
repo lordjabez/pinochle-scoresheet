@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 /**
  * Displays final game results.
- *
+ * 
  * @author Judson D Neer
  * @see ScoresheetActivity
  */
@@ -73,7 +73,7 @@ public class FinishedActivity extends ScoresheetActivity {
 
     /**
      * Executes an action based on menu selection.
-     *
+     * 
      * @param item The clicked menu item that called this method
      */
     public void takeAction(MenuItem item) {

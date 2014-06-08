@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 /**
  * Provides interface for user to enter the meld for a hand.
- *
+ * 
  * @author Judson D Neer
  * @see ScoresheetActivity
  */
@@ -79,7 +79,7 @@ public class MeldActivity extends ScoresheetActivity {
     /**
      * Helper function to set new meld values, making sure they're within
      * range and also updating the adjust buttons' enable/disable statuses.
-     *
+     * 
      * @param meld0 New meld value for team 0
      * @param meld1 New meld value for team 1
      */
@@ -97,7 +97,7 @@ public class MeldActivity extends ScoresheetActivity {
 
     /**
      * Adjusts the meld values up or down.
-     *
+     * 
      * @param button The clicked button that called this method
      */
     public void adjustMeld(View button) {
@@ -105,10 +105,18 @@ public class MeldActivity extends ScoresheetActivity {
         int meld0 = Integer.parseInt(meld0Text.getText().toString());
         int meld1 = Integer.parseInt(meld1Text.getText().toString());
         switch (button.getId()) {
-            case R.id.meld0_up_button:   meld0++; break;
-            case R.id.meld0_down_button: meld0--; break;
-            case R.id.meld1_up_button:   meld1++; break;
-            case R.id.meld1_down_button: meld1--; break;
+            case R.id.meld0_up_button:
+                meld0++;
+                break;
+            case R.id.meld0_down_button:
+                meld0--;
+                break;
+            case R.id.meld1_up_button:
+                meld1++;
+                break;
+            case R.id.meld1_down_button:
+                meld1--;
+                break;
         }
         // Finally set the new meld values.
         setMeld(meld0, meld1);
@@ -116,7 +124,7 @@ public class MeldActivity extends ScoresheetActivity {
 
     /**
      * Executes an action based on menu selection.
-     *
+     * 
      * @param item The clicked menu item that called this method
      */
     public void takeAction(MenuItem item) {

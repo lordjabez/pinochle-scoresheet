@@ -9,7 +9,7 @@ import android.os.Bundle;
  * Base activity from which all other activities inherit. This
  * class provides some basic functionality such as saving/restoring
  * the game data object and disabling transition animations.
- *
+ * 
  * @author Judson D Neer
  * @see android.app.Activity
  */

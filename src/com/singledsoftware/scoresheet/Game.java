@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * Stores all game data.
- *
+ * 
  * @author Judson D Neer
  * @see java.io.Serializable
  */
@@ -111,7 +111,7 @@ class Game implements Serializable {
 
     /**
      * Sets the bid values for the current hand.
-     *
+     * 
      * @param bid Bid value
      * @param bidder Player index for bidder (0-4 for players around the table, starting to the left of scorekeeper)
      * @param trump Trump index (0 = spades, 1 = diamonds, 2 = clubs, 3 = hearts)
@@ -122,7 +122,7 @@ class Game implements Serializable {
 
     /**
      * Sets the meld values for the current hand.
-     *
+     * 
      * @param meld0 Meld value for team 0
      * @param meld1 Meld value for team 1
      */
@@ -141,7 +141,7 @@ class Game implements Serializable {
 
     /**
      * Set the point values for the current hand.
-     *
+     * 
      * @param points0 Points value for team 0
      * @param points1 Points value for team 1
      */
@@ -181,8 +181,12 @@ class Game implements Serializable {
     public int getWinningTeam() {
         int total0 = getTotal(0);
         int total1 = getTotal(1);
-        if (total0 > total1) return 0;
-        if (total1 > total0) return 1;
+        if (total0 > total1) {
+            return 0;
+        }
+        if (total1 > total0) {
+            return 1;
+        }
         return -1;
     }
 

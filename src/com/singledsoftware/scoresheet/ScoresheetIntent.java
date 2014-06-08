@@ -13,7 +13,7 @@ import android.content.Intent;
  * @see android.app.Intent
  */
 public class ScoresheetIntent extends Intent {
-    
+
     /**
      * Custom constructor for storing the game object.
      * 
@@ -28,5 +28,5 @@ public class ScoresheetIntent extends Intent {
         // Store the game object for the new activity.
         this.putExtra("game", game);
     }
-    
+
 }

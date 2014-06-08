@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 /**
  * Provides interface for user to enter the bid for a hand.
- *
+ * 
  * @author Judson D Neer
  * @see ScoresheetActivity
  */
@@ -75,7 +75,7 @@ public class BidActivity extends ScoresheetActivity {
     /**
      * Convenience method that gets the index value for
      * the currently selected item in a radio button group.
-     *
+     * 
      * @param group The relevant radio button group
      * @return The index value for the selected item
      */
@@ -87,7 +87,7 @@ public class BidActivity extends ScoresheetActivity {
     /**
      * Helper function to set the new bid value, making sure it is within
      * range and also updating the adjust buttons' enable/disable statuses.
-     *
+     * 
      * @param bid New bid value
      */
     private void setBid(int bid) {
@@ -101,15 +101,19 @@ public class BidActivity extends ScoresheetActivity {
 
     /**
      * Adjusts the bid value up or down.
-     *
+     * 
      * @param button The clicked button that called this method
      */
     public void adjustBid(View button) {
         // Grab the bid value and adjust accordingly.
         int bid = Integer.parseInt(bidText.getText().toString());
         switch (button.getId()) {
-            case R.id.bid_up_button:   bid++; break;
-            case R.id.bid_down_button: bid--; break;
+            case R.id.bid_up_button:
+                bid++;
+                break;
+            case R.id.bid_down_button:
+                bid--;
+                break;
         }
         // Finally set the new bid value.
         setBid(bid);
@@ -117,7 +121,7 @@ public class BidActivity extends ScoresheetActivity {
 
     /**
      * Executes an action based on menu selection.
-     *
+     * 
      * @param item The clicked menu item that called this method
      */
     public void takeAction(MenuItem item) {

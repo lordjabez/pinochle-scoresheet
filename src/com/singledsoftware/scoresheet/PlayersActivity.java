@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 /**
  * Prompts user to enter the names of all four players.
- *
+ * 
  * @author Judson D Neer
  * @see ScoresheetActivity
  */
@@ -52,7 +52,7 @@ public class PlayersActivity extends ScoresheetActivity {
 
     /**
      * Executes an action based on menu selection.
-     *
+     * 
      * @param item The clicked menu item that called this methods
      */
     public void takeAction(MenuItem item) {
