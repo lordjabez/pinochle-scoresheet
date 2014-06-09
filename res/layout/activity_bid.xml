@@ -47,44 +47,6 @@
         </LinearLayout>
 
         <RadioGroup
-            android:id="@+id/trump_radiogroup"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/game_margin"
-            android:layout_weight="1" >
-
-            <RadioButton
-                android:id="@+id/spades_trump"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:checked="true"
-                android:text="@string/spades" />
-
-            <RadioButton
-                android:id="@+id/diamonds_trump"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/diamonds" />
-
-            <RadioButton
-                android:id="@+id/clubs_trump"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/clubs" />
-
-            <RadioButton
-                android:id="@+id/hearts_trump"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/hearts" />
-
-        </RadioGroup>
-
-        <RadioGroup
             android:id="@+id/bidder_radiogroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -124,6 +86,45 @@
                 android:maxLines="1"
                 android:ellipsize="end" />
         </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/trump_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/game_margin"
+            android:layout_weight="1" >
+
+            <RadioButton
+                android:id="@+id/spades_trump"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/spades" />
+
+            <RadioButton
+                android:id="@+id/diamonds_trump"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/diamonds" />
+
+            <RadioButton
+                android:id="@+id/clubs_trump"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/clubs" />
+
+            <RadioButton
+                android:id="@+id/hearts_trump"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/hearts" />
+
+        </RadioGroup>
+
     </LinearLayout>
 
     <fragment
