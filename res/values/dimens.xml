@@ -3,6 +3,7 @@
 <!-- Copyright 2013 Judson D Neer -->
 
 <resources>
+
     <dimen name="edit_margin">16dp</dimen>
     <dimen name="game_button_margin">128dp</dimen>
     <dimen name="status_margin">4dp</dimen>
@@ -10,4 +11,5 @@
     <dimen name="status_width">180dp</dimen>
     <dimen name="status_item_width">60dp</dimen>
     <dimen name="spinner_font_size">48sp</dimen>
+
 </resources>

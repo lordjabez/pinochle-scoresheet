@@ -5,28 +5,24 @@
 <resources>
 
     <string name="app_name">Scoresheet</string>
-
     <string name="start_new_game">Start New Game</string>
-
     <string name="title_activity_players">Enter Player Names</string>
     <string name="title_activity_bid">Hand %1$d - Enter Bid</string>
     <string name="title_activity_meld">Hand %1$d - Enter Meld</string>
     <string name="title_activity_points">Hand %1$d - Enter Points</string>
     <string name="title_activity_finished">Game Finished</string>
-
     <string name="main">Main</string>
     <string name="clear">Clear</string>
     <string name="ok">OK</string>
     <string name="undo">Undo</string>
     <string name="skip">Skip</string>
-    <string name="new_">New</string>  <!-- Underscore required because "new" is a reserved name. -->
+    <string name="new_">New</string> <!-- Underscore required because "new" is a reserved name. -->
     <string name="bid">Bid</string>
     <string name="up">Up</string>
     <string name="down">Down</string>
-
     <string name="spades">Spades</string>
     <string name="diamonds">Diamonds</string>
     <string name="clubs">Clubs</string>
     <string name="hearts">Hearts</string>
-    
+
 </resources>

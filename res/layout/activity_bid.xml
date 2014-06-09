@@ -43,7 +43,6 @@
                 android:layout_weight="1"
                 android:onClick="adjustBid"
                 android:text="@string/down" />
-
         </LinearLayout>
 
         <RadioGroup
@@ -58,33 +57,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:maxLines="1"
+                android:checked="true"
                 android:ellipsize="end"
-                android:checked="true" />
+                android:maxLines="1" />
 
             <RadioButton
                 android:id="@+id/player1_bidder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:maxLines="1"
-                android:ellipsize="end" />
+                android:ellipsize="end"
+                android:maxLines="1" />
 
             <RadioButton
                 android:id="@+id/player2_bidder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:maxLines="1"
-                android:ellipsize="end" />
+                android:ellipsize="end"
+                android:maxLines="1" />
 
             <RadioButton
                 android:id="@+id/player3_bidder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:maxLines="1"
-                android:ellipsize="end" />
+                android:ellipsize="end"
+                android:maxLines="1" />
         </RadioGroup>
 
         <RadioGroup
@@ -122,9 +121,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/hearts" />
-
         </RadioGroup>
-
     </LinearLayout>
 
     <fragment

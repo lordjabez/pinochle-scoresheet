@@ -52,7 +52,7 @@
         android:layout_centerVertical="true"
         android:layout_margin="@dimen/edit_margin"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:imeOptions="actionDone" />
+        android:imeOptions="actionDone"
+        android:inputType="textPersonName" />
 
 </RelativeLayout>
