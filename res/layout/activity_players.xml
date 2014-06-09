@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/edit_margin"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         android:nextFocusDown="@+id/player1name_edit" >
 
         <requestFocus />
@@ -30,7 +30,7 @@
         android:layout_centerVertical="true"
         android:layout_margin="@dimen/edit_margin"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         android:nextFocusDown="@+id/player2name_edit" />
 
     <EditText
@@ -41,7 +41,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/edit_margin"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         android:nextFocusDown="@+id/player3name_edit" />
 
     <EditText
@@ -53,6 +53,6 @@
         android:layout_margin="@dimen/edit_margin"
         android:ems="10"
         android:imeOptions="actionDone"
-        android:inputType="textPersonName" />
+        android:inputType="textCapWords" />
 
 </RelativeLayout>
