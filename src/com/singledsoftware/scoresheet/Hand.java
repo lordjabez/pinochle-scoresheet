@@ -91,9 +91,14 @@ class Hand implements Serializable {
         if (meld != null) {
             // Check to see if we have point values.
             if (points != null) {
-                // Sum the meld and points, and if it's equal to or larger than
-                // the bid, or if this is the non-bidding team, return that sum.
-                int score = meld[t] + points[t];
+                // Sum the meld and points to get the score, but only if at
+                // least one point was won. Otherwise not even the meld counts.
+                int score = 0;
+                if (points[t] > 0) {
+                    score = meld[t] + points[t];
+                }
+                // If the score is equal to or larger than the bid, or
+                // if this is the non-bidding team, return the score.
                 if (score >= bid || !bidderOnTeam(t)) {
                     return score;
                 }
