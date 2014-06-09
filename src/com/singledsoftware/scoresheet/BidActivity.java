@@ -47,7 +47,7 @@ public class BidActivity extends ScoresheetActivity {
         statusFragment = (StatusFragment)getFragmentManager().findFragmentById(R.id.status_fragment);
         // Advance to the next hand.
         game.nextHand();
-        // Set the activity tile with the proper hand number.
+        // Set the activity title with the proper hand number.
         int hand = game.getHand();
         String title = this.getString(R.string.title_activity_bid, hand);
         this.setTitle(title);
