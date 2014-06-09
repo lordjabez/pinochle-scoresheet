@@ -155,7 +155,7 @@ public class PointsActivity extends ScoresheetActivity {
                 game.setPoints(points0, points1);
                 // If we've reached the end of the game we go to the final
                 // activity, otherwise we go to bidding on the next hand.
-                Class<?> activityClass = game.isGameFinished() ? FinishedActivity.class : BidActivity.class;
+                Class<?> activityClass = game.isFinished() ? FinishedActivity.class : BidActivity.class;
                 startActivity(new ScoresheetIntent(this, activityClass, game));
                 break;
         }

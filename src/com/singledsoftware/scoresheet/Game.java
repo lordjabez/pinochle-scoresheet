@@ -158,18 +158,43 @@ class Game implements Serializable {
     }
 
     /**
+     * @return True if the game is in an enter players phase
+     */
+    public boolean isPlayersPhase() {
+        // We're ready to enter player names if we have
+        // yet to advance to the first (i.e. index 0) hand.
+        return hand < 0;
+    }
+
+    /**
+     * @return True if the game is in a bid phase
+     */
+    public boolean isBidPhase() {
+        // We're ready to bid if the hand object has yet to be created.
+        return hand >= 0 && hands[hand] == null;
+    }
+
+    /**
+     * @return True if the game is in a meld phase
+     */
+    public boolean isMeldPhase() {
+        // We're ready to score meld if we have a valid hand but not yet any meld.
+        return hand >= 0 && hands[hand] != null && !hands[hand].meldValid();
+    }
+
+    /**
      * @return True if the game is in a points phase
      */
     public boolean isPointsPhase() {
         // We're ready to score points if we have a valid
         // hand with valid meld, but not yet any points.
-        return hands[hand] != null && hands[hand].meldValid() && !hands[hand].pointsValid();
+        return hand >= 0 && hands[hand] != null && hands[hand].meldValid() && !hands[hand].pointsValid();
     }
 
     /**
      * @return True if the game is completed
      */
-    public boolean isGameFinished() {
+    public boolean isFinished() {
         // The game is over when it's the last (i.e. index 3)
         // hand, and points have been scored for that hand.
         return hand == 3 && hands[hand] != null && hands[hand].pointsValid();

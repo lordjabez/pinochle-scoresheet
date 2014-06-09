@@ -136,7 +136,7 @@ public class MeldActivity extends ScoresheetActivity {
                 game.setMeld(meld0, meld1);
                 // It's possible the game is over at this point, if a team is set
                 // during the final round. In that case go to the final activity.
-                if (game.isGameFinished()) {
+                if (game.isFinished()) {
                     startActivity(new ScoresheetIntent(this, FinishedActivity.class, game));
                 }
                 // It's also possible that the outcome of the hand is decided
