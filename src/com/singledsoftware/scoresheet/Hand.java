@@ -18,7 +18,7 @@ class Hand implements Serializable {
     // Bid value
     private final int bid;
 
-    // Index of bid winner (0-4)
+    // Index of bid winner (0-3 for players around the table, starting to the left of scorekeeper)
     private final int bidder;
 
     // Index of trump suit (0 = spades, 1 = diamonds, 2 = clubs, 3 = hearts)
@@ -50,7 +50,7 @@ class Hand implements Serializable {
     }
 
     /**
-     * @return Player index for the bidder (0-4 for players around the table, starting to the left of scorekeeper)
+     * @return Player index for the bidder (0-3 for players around the table, starting to the left of scorekeeper)
      */
     public int getBidder() {
         return bidder;

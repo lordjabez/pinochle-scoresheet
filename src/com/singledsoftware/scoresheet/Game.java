@@ -24,7 +24,7 @@ class Game implements Serializable {
     private int hand = -1;
 
     /**
-     * @param p Player index (0-4 for players around the table, starting to the left of scorekeeper)
+     * @param p Player index (0-3 for players around the table, starting to the left of scorekeeper)
      * @return True if the player is the dealer
      */
     public boolean isDealer(int p) {
@@ -32,7 +32,7 @@ class Game implements Serializable {
     }
 
     /**
-     * @param p Player index (0-4 for players around the table, starting to the left of scorekeeper)
+     * @param p Player index (0-3 for players around the table, starting to the left of scorekeeper)
      * @return The name of the player
      */
     public String getPlayer(int p) {
@@ -40,7 +40,7 @@ class Game implements Serializable {
     }
 
     /**
-     * @param p Player index (0-4 for players around the table, starting to the left of scorekeeper)
+     * @param p Player index (0-3 for players around the table, starting to the left of scorekeeper)
      * @param player New name for the player
      */
     public void setPlayer(int p, String player) {
@@ -113,7 +113,7 @@ class Game implements Serializable {
      * Sets the bid values for the current hand.
      * 
      * @param bid Bid value
-     * @param bidder Player index for bidder (0-4 for players around the table, starting to the left of scorekeeper)
+     * @param bidder Player index for bidder (0-3 for players around the table, starting to the left of scorekeeper)
      * @param trump Trump index (0 = spades, 1 = diamonds, 2 = clubs, 3 = hearts)
      */
     public void setBid(int bid, int bidder, int trump) {
