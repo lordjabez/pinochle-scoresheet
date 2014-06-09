@@ -137,10 +137,20 @@ public class MeldActivity extends ScoresheetActivity {
                 int meld0 = Integer.parseInt(meld0Text.getText().toString());
                 int meld1 = Integer.parseInt(meld1Text.getText().toString());
                 game.setMeld(meld0, meld1);
-                // It's possible that the outcome of the hand is decided after melding,
-                // and if so jump right to the next bid. Otherwise go to the points round.
-                Class<?> activityClass = game.isPointsPhase() ? PointsActivity.class : BidActivity.class;
-                startActivity(new ScoresheetIntent(this, activityClass, game));
+                // It's possible the game is over at this point, if a team is set
+                // during the final round. In that case go to the final activity.
+                if (game.isGameFinished()) {
+                    startActivity(new ScoresheetIntent(this, FinishedActivity.class, game));
+                }
+                // It's also possible that the outcome of the hand is decided
+                // after melding, and if so jump right to the next bid round.
+                else if (game.isPointsPhase()) {
+                    startActivity(new ScoresheetIntent(this, PointsActivity.class, game));
+                }
+                // Otherwise go to the points round.
+                else {
+                    startActivity(new ScoresheetIntent(this, BidActivity.class, game));
+                }
                 break;
         }
     }
