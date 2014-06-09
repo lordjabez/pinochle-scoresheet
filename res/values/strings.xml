@@ -13,7 +13,7 @@
     <string name="title_activity_finished">Game Finished</string>
     <string name="main">Main</string>
     <string name="clear">Clear</string>
-    <string name="ok">OK</string>
+    <string name="next">Next</string>
     <string name="undo">Undo</string>
     <string name="skip">Skip</string>
     <string name="new_">New</string> <!-- Underscore required because "new" is a reserved name. -->
