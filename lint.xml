@@ -6,6 +6,6 @@
     <issue id="NestedWeights" severity="ignore" />
     <issue id="TypographyQuotes" severity="warning" />
     <issue id="UnusedIds" severity="warning">
-        <ignore path="res\layout\activity_bid.xml" />
+        <ignore path="res/layout/activity_bid.xml" />
     </issue>
 </lint>

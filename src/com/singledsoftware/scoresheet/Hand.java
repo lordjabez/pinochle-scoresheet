@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * Stores data for a particular hand of a game.
- * 
+ *
  * @author Judson D Neer
  * @see java.io.Serializable
  */
@@ -31,7 +31,7 @@ class Hand implements Serializable {
 
     /**
      * Constructor.
-     * 
+     *
      * @param b New bid value
      * @param d New bidder index
      * @param u New trump index
@@ -91,11 +91,16 @@ class Hand implements Serializable {
         if (meld != null) {
             // Check to see if we have point values.
             if (points != null) {
-                // Sum the meld and points to get the score, but only if at
-                // least one point was won. Otherwise not even the meld counts.
-                int score = 0;
-                if (points[t] > 0) {
-                    score = meld[t] + points[t];
+                // Get the index of the other team
+                int u = t == 0 ? 1 : 0;
+                // By default a team's score is their points plus meld.
+                int score = meld[t] + points[t];
+                // However, if their score is zero and either they were the
+                // bidder (which means they threw the hand), or their opponent's
+                // score is greater than zero (meaning their zero score is due to
+                // an opponent throwing the hand) the team should score no points.
+                if (points[t] == 0 && (points[u] > 0 || bidderOnTeam(t))) {
+                    score = 0;
                 }
                 // If the score is equal to or larger than the bid, or
                 // if this is the non-bidding team, return the score.
@@ -134,7 +139,7 @@ class Hand implements Serializable {
 
     /**
      * Sets new meld values.
-     * 
+     *
      * @param meld0 Meld for team 0
      * @param meld1 Meld for team 1
      */
@@ -144,7 +149,7 @@ class Hand implements Serializable {
 
     /**
      * Sets new point values.
-     * 
+     *
      * @param points0 Points for team 0
      * @param points1 Points for team 1
      */
